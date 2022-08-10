@@ -2,10 +2,11 @@ defmodule HuntCutdown.Equipments.WeaponAmmos do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, :string, []}
+
   schema "weapon_ammos" do
     field :cost, :integer
     field :full_name, :string
-    field :id, :string
     field :short_name, :string
     field :weapon_category_id, :string
 

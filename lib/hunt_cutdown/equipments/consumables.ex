@@ -2,11 +2,12 @@ defmodule HuntCutdown.Equipments.Consumables do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:id, :string, []}
+
   schema "consumables" do
     field :category_id, :string
     field :cost, :integer
     field :full_name, :string
-    field :id, :string
     field :short_name, :string
 
     timestamps()
