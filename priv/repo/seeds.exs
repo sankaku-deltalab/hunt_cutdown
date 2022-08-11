@@ -11,27 +11,27 @@
 # and so on) as they will fail if something goes wrong.
 
 defmodule HuntCutdown.SeedModule do
-  alias HuntCutdown.Equipments.{
-    WeaponCategories,
-    Weapons,
-    WeaponAmmos,
-    ToolCategories,
-    Tools,
-    ConsumableCategories,
-    Consumables
+  alias HuntCutdown.Equipment.{
+    WeaponCategory,
+    Weapon,
+    WeaponAmmo,
+    ToolCategory,
+    Tool,
+    ConsumableCategory,
+    Consumable
   }
 
   def assign() do
     path_base = "priv/repo/seed_data"
 
     data_pairs = [
-      {%WeaponCategories{}, "weapon_categories.csv"},
-      {%Weapons{}, "weapons.csv"},
-      {%WeaponAmmos{}, "weapon_ammos.csv"},
-      {%ToolCategories{}, "tool_categories.csv"},
-      {%Tools{}, "tools.csv"},
-      {%ConsumableCategories{}, "consumable_categories.csv"},
-      {%Consumables{}, "consumables.csv"}
+      {%WeaponCategory{}, "weapon_categories.csv"},
+      {%Weapon{}, "weapons.csv"},
+      {%WeaponAmmo{}, "weapon_ammos.csv"},
+      {%ToolCategory{}, "tool_categories.csv"},
+      {%Tool{}, "tools.csv"},
+      {%ConsumableCategory{}, "consumable_categories.csv"},
+      {%Consumable{}, "consumables.csv"}
     ]
 
     for {struct, path_rel} <- data_pairs do
