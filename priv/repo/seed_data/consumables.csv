@@ -1,0 +1,23 @@
+id,full_name,short_name,cost,category_id
+consumable_ammo_box,Ammo Box,Ammo Box,65,consumable_ammo
+consumable_empty,Empty,Empty,0,consumable_empty
+consumable_big_dynamite_bundle,Big Dynamite Bundle,Big Dynamite Bundle,110,consumable_explosive
+consumable_dynamite_bundle,Dynamite Bundle,Dynamite Bundle,75,consumable_explosive
+consumable_dynamite_stick,Dynamite Stick,Dynamite Stick,18,consumable_explosive
+consumable_frag_bomb,Frag Bomb,Frag Bomb,70,consumable_explosive
+consumable_sticky_bomb,Sticky Bomb,Sticky Bomb,64,consumable_explosive
+consumable_waxed_dynamite_stick,Waxed Dynamite Stick,Waxed Dynamite Stick,24,consumable_explosive
+consumable_fire_bomb,Fire Bomb,Fire Bomb,18,consumable_fire
+consumable_flash_bomb,Flash Bomb,Flash Bomb,47,consumable_fire
+consumable_hellfire_bomb,Hellfire Bomb,Hellfire Bomb,70,consumable_fire
+consumable_liquid_fire_bomb,Liquid Fire Bomb,Liquid Fire Bomb,23,consumable_fire
+consumable_antidote_shot,Antidote Shot,Antidote Shot,55,consumable_heal
+consumable_stamina_shot,Stamina Shot,Stamina Shot,40,consumable_heal
+consumable_vitality_shot,Vitality Shot,Vitality Shot,65,consumable_heal
+consumable_weak_antidote_shot,Weak Antidote Shot,Weak Antidote Shot,25,consumable_heal
+consumable_weak_stamina_shot,Weak Stamina Shot,Weak Stamina Shot,10,consumable_heal
+consumable_weak_vitality_shot,Weak Vitality Shot,Weak Vitality Shot,10,consumable_heal
+consumable_chaos_bomb,Chaos Bomb,Chaos Bomb,15,consumable_throwable_misc
+consumable_concertina_bomb,Concertina Bomb,Concertina Bomb,48,consumable_throwable_misc
+consumable_hive_bomb,Hive Bomb,Hive Bomb,40,consumable_throwable_misc
+consumable_poison_bomb,Poison Bomb,Poison Bomb,25,consumable_throwable_misc

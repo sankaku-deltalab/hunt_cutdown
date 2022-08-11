@@ -1,0 +1,20 @@
+id,full_name,short_name,cost,category_id
+tool_empty,Empty,Empty,0,tool_empty
+tool_alert_trip_mine,Alert Trip Mine,Alert Trip Mine,60,tool_trap
+tool_blank_fire_decoys,Blank Fire Decoys,Blank Fire Decoys,45,tool_decoy
+tool_choke_bomb,Choke Bomb,Choke Bomb,25,tool_throwable
+tool_concertina_trip_mine,Concertina Trip Mine,Concertina Trip Mine,90,tool_trap
+tool_decoy_fuses,Decoy Fuses,Decoy Fuses,60,tool_throwable
+tool_decoys,Decoys,Decoys,6,tool_decoy
+tool_dusters,Dusters,Dusters,15,tool_melee
+tool_electric_lamp,Electric Lamp,Electric Lamp,5,tool_light
+tool_first_aid_kit,First Aid Kit,First Aid Kit,30,tool_aid
+tool_flare_pistol,Flare Pistol,Flare Pistol,36,tool_light
+tool_fuses,Fuses,Fuses,10,tool_light
+tool_heavy_knife,Heavy Knife,Heavy Knife,25,tool_melee
+tool_knife,Knife,Knife,20,tool_melee
+tool_knuckle_knife,Knuckle Knife,Knuckle Knife,15,tool_melee
+tool_poison_trip_mine,Poison Trip Mine,Poison Trip Mine,60,tool_trap
+tool_quad_derringer,Quad Derringer,Quad Derringer,30,tool_gun
+tool_spyglass,Spyglass,Spyglass,8,tool_spyglass
+tool_throwing_knives,Throwing Knives,Throwing Knives,40,tool_melee

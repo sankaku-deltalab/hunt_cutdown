@@ -1,0 +1,10 @@
+id,full_name,short_name
+tool_empty,Empty,Empty
+tool_aid,Aid,Aid
+tool_decoy,Decoy,Decoy
+tool_gun,Gun,Gun
+tool_light,Light,Light
+tool_melee,Melee,Melee
+tool_spyglass,Spyglass,Spyglass
+tool_throwable,Throwable,Throwable
+tool_trap,Trap,Trap

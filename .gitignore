@@ -61,3 +61,6 @@ npm-debug.log
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
+
+# Ignore excel backup file
+~$*.xlsx
