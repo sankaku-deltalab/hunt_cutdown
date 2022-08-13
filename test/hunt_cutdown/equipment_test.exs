@@ -8,7 +8,36 @@ defmodule HuntCutdown.EquipmentTest do
 
     import HuntCutdown.EquipmentFixtures
 
-    @invalid_attrs %{ammo_slot_count: nil, category_id: nil, cost: nil, full_name: nil, id: nil, short_name: nil, size: nil}
+    @invalid_attrs %{
+      ammo_slot_count: nil,
+      category_id: nil,
+      cost: nil,
+      full_name: nil,
+      id: nil,
+      short_name: nil,
+      size: nil
+    }
+
+    @weapon_category_id weapon_category_id()
+    @weapon_category_id_2 weapon_category_id_2()
+
+    setup do
+      [
+        %{
+          id: @weapon_category_id,
+          full_name: "test_weapon_category",
+          short_name: "test_weapon_category"
+        },
+        %{
+          id: @weapon_category_id_2,
+          full_name: "test_weapon_category_2",
+          short_name: "test_weapon_category_2"
+        }
+      ]
+      |> Enum.map(&Equipment.create_weapon_category(&1))
+
+      :ok
+    end
 
     test "list_weapons/0 returns all weapons" do
       weapon = weapon_fixture()
@@ -21,11 +50,19 @@ defmodule HuntCutdown.EquipmentTest do
     end
 
     test "create_weapon/1 with valid data creates a weapon" do
-      valid_attrs = %{ammo_slot_count: 42, category_id: "some category_id", cost: 42, full_name: "some full_name", id: "some id", short_name: "some short_name", size: 42}
+      valid_attrs = %{
+        ammo_slot_count: 42,
+        category_id: @weapon_category_id,
+        cost: 42,
+        full_name: "some full_name",
+        id: "some id",
+        short_name: "some short_name",
+        size: 42
+      }
 
       assert {:ok, %Weapon{} = weapon} = Equipment.create_weapon(valid_attrs)
       assert weapon.ammo_slot_count == 42
-      assert weapon.category_id == "some category_id"
+      assert weapon.category_id == @weapon_category_id
       assert weapon.cost == 42
       assert weapon.full_name == "some full_name"
       assert weapon.id == "some id"
@@ -39,11 +76,20 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_weapon/2 with valid data updates the weapon" do
       weapon = weapon_fixture()
-      update_attrs = %{ammo_slot_count: 43, category_id: "some updated category_id", cost: 43, full_name: "some updated full_name", id: "some updated id", short_name: "some updated short_name", size: 43}
+
+      update_attrs = %{
+        ammo_slot_count: 43,
+        category_id: @weapon_category_id_2,
+        cost: 43,
+        full_name: "some updated full_name",
+        id: "some updated id",
+        short_name: "some updated short_name",
+        size: 43
+      }
 
       assert {:ok, %Weapon{} = weapon} = Equipment.update_weapon(weapon, update_attrs)
       assert weapon.ammo_slot_count == 43
-      assert weapon.category_id == "some updated category_id"
+      assert weapon.category_id == @weapon_category_id_2
       assert weapon.cost == 43
       assert weapon.full_name == "some updated full_name"
       assert weapon.id == "some updated id"
@@ -89,7 +135,9 @@ defmodule HuntCutdown.EquipmentTest do
     test "create_weapon_category/1 with valid data creates a weapon_category" do
       valid_attrs = %{full_name: "some full_name", id: "some id", short_name: "some short_name"}
 
-      assert {:ok, %WeaponCategory{} = weapon_category} = Equipment.create_weapon_category(valid_attrs)
+      assert {:ok, %WeaponCategory{} = weapon_category} =
+               Equipment.create_weapon_category(valid_attrs)
+
       assert weapon_category.full_name == "some full_name"
       assert weapon_category.id == "some id"
       assert weapon_category.short_name == "some short_name"
@@ -101,9 +149,16 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_weapon_category/2 with valid data updates the weapon_category" do
       weapon_category = weapon_category_fixture()
-      update_attrs = %{full_name: "some updated full_name", id: "some updated id", short_name: "some updated short_name"}
 
-      assert {:ok, %WeaponCategory{} = weapon_category} = Equipment.update_weapon_category(weapon_category, update_attrs)
+      update_attrs = %{
+        full_name: "some updated full_name",
+        id: "some updated id",
+        short_name: "some updated short_name"
+      }
+
+      assert {:ok, %WeaponCategory{} = weapon_category} =
+               Equipment.update_weapon_category(weapon_category, update_attrs)
+
       assert weapon_category.full_name == "some updated full_name"
       assert weapon_category.id == "some updated id"
       assert weapon_category.short_name == "some updated short_name"
@@ -111,14 +166,20 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_weapon_category/2 with invalid data returns error changeset" do
       weapon_category = weapon_category_fixture()
-      assert {:error, %Ecto.Changeset{}} = Equipment.update_weapon_category(weapon_category, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Equipment.update_weapon_category(weapon_category, @invalid_attrs)
+
       assert weapon_category == Equipment.get_weapon_category!(weapon_category.id)
     end
 
     test "delete_weapon_category/1 deletes the weapon_category" do
       weapon_category = weapon_category_fixture()
       assert {:ok, %WeaponCategory{}} = Equipment.delete_weapon_category(weapon_category)
-      assert_raise Ecto.NoResultsError, fn -> Equipment.get_weapon_category!(weapon_category.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Equipment.get_weapon_category!(weapon_category.id)
+      end
     end
 
     test "change_weapon_category/1 returns a weapon_category changeset" do
@@ -134,6 +195,26 @@ defmodule HuntCutdown.EquipmentTest do
 
     @invalid_attrs %{cost: nil, full_name: nil, id: nil, short_name: nil, weapon_category_id: nil}
 
+    @weapon_category_id weapon_category_id()
+
+    setup do
+      [
+        %{
+          id: @weapon_category_id,
+          full_name: "test_weapon_category",
+          short_name: "test_weapon_category"
+        },
+        %{
+          id: @weapon_category_id_2,
+          full_name: "test_weapon_category_2",
+          short_name: "test_weapon_category_2"
+        }
+      ]
+      |> Enum.map(&Equipment.create_weapon_category(&1))
+
+      :ok
+    end
+
     test "list_weapon_ammos/0 returns all weapon_ammos" do
       weapon_ammo = weapon_ammo_fixture()
       assert Equipment.list_weapon_ammos() == [weapon_ammo]
@@ -145,14 +226,20 @@ defmodule HuntCutdown.EquipmentTest do
     end
 
     test "create_weapon_ammo/1 with valid data creates a weapon_ammo" do
-      valid_attrs = %{cost: 42, full_name: "some full_name", id: "some id", short_name: "some short_name", weapon_category_id: "some weapon_category_id"}
+      valid_attrs = %{
+        cost: 42,
+        full_name: "some full_name",
+        id: "some id",
+        short_name: "some short_name",
+        weapon_category_id: @weapon_category_id
+      }
 
       assert {:ok, %WeaponAmmo{} = weapon_ammo} = Equipment.create_weapon_ammo(valid_attrs)
       assert weapon_ammo.cost == 42
       assert weapon_ammo.full_name == "some full_name"
       assert weapon_ammo.id == "some id"
       assert weapon_ammo.short_name == "some short_name"
-      assert weapon_ammo.weapon_category_id == "some weapon_category_id"
+      assert weapon_ammo.weapon_category_id == @weapon_category_id
     end
 
     test "create_weapon_ammo/1 with invalid data returns error changeset" do
@@ -161,19 +248,31 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_weapon_ammo/2 with valid data updates the weapon_ammo" do
       weapon_ammo = weapon_ammo_fixture()
-      update_attrs = %{cost: 43, full_name: "some updated full_name", id: "some updated id", short_name: "some updated short_name", weapon_category_id: "some updated weapon_category_id"}
 
-      assert {:ok, %WeaponAmmo{} = weapon_ammo} = Equipment.update_weapon_ammo(weapon_ammo, update_attrs)
+      update_attrs = %{
+        cost: 43,
+        full_name: "some updated full_name",
+        id: "some updated id",
+        short_name: "some updated short_name",
+        weapon_category_id: @weapon_category_id_2
+      }
+
+      assert {:ok, %WeaponAmmo{} = weapon_ammo} =
+               Equipment.update_weapon_ammo(weapon_ammo, update_attrs)
+
       assert weapon_ammo.cost == 43
       assert weapon_ammo.full_name == "some updated full_name"
       assert weapon_ammo.id == "some updated id"
       assert weapon_ammo.short_name == "some updated short_name"
-      assert weapon_ammo.weapon_category_id == "some updated weapon_category_id"
+      assert weapon_ammo.weapon_category_id == @weapon_category_id_2
     end
 
     test "update_weapon_ammo/2 with invalid data returns error changeset" do
       weapon_ammo = weapon_ammo_fixture()
-      assert {:error, %Ecto.Changeset{}} = Equipment.update_weapon_ammo(weapon_ammo, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Equipment.update_weapon_ammo(weapon_ammo, @invalid_attrs)
+
       assert weapon_ammo == Equipment.get_weapon_ammo!(weapon_ammo.id)
     end
 
@@ -196,6 +295,27 @@ defmodule HuntCutdown.EquipmentTest do
 
     @invalid_attrs %{category_id: nil, cost: nil, full_name: nil, id: nil, short_name: nil}
 
+    @tool_category_id tool_category_id()
+    @tool_category_id_2 tool_category_id_2()
+
+    setup do
+      [
+        %{
+          id: @tool_category_id,
+          full_name: "test_tool_category",
+          short_name: "test_tool_category"
+        },
+        %{
+          id: @tool_category_id_2,
+          full_name: "test_tool_category_2",
+          short_name: "test_tool_category_2"
+        }
+      ]
+      |> Enum.map(&Equipment.create_tool_category(&1))
+
+      :ok
+    end
+
     test "list_tools/0 returns all tools" do
       tool = tool_fixture()
       assert Equipment.list_tools() == [tool]
@@ -207,10 +327,16 @@ defmodule HuntCutdown.EquipmentTest do
     end
 
     test "create_tool/1 with valid data creates a tool" do
-      valid_attrs = %{category_id: "some category_id", cost: 42, full_name: "some full_name", id: "some id", short_name: "some short_name"}
+      valid_attrs = %{
+        category_id: @tool_category_id,
+        cost: 42,
+        full_name: "some full_name",
+        id: "some id",
+        short_name: "some short_name"
+      }
 
       assert {:ok, %Tool{} = tool} = Equipment.create_tool(valid_attrs)
-      assert tool.category_id == "some category_id"
+      assert tool.category_id == @tool_category_id
       assert tool.cost == 42
       assert tool.full_name == "some full_name"
       assert tool.id == "some id"
@@ -223,10 +349,17 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_tool/2 with valid data updates the tool" do
       tool = tool_fixture()
-      update_attrs = %{category_id: "some updated category_id", cost: 43, full_name: "some updated full_name", id: "some updated id", short_name: "some updated short_name"}
+
+      update_attrs = %{
+        category_id: @tool_category_id_2,
+        cost: 43,
+        full_name: "some updated full_name",
+        id: "some updated id",
+        short_name: "some updated short_name"
+      }
 
       assert {:ok, %Tool{} = tool} = Equipment.update_tool(tool, update_attrs)
-      assert tool.category_id == "some updated category_id"
+      assert tool.category_id == @tool_category_id_2
       assert tool.cost == 43
       assert tool.full_name == "some updated full_name"
       assert tool.id == "some updated id"
@@ -283,9 +416,16 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_tool_category/2 with valid data updates the tool_category" do
       tool_category = tool_category_fixture()
-      update_attrs = %{full_name: "some updated full_name", id: "some updated id", short_name: "some updated short_name"}
 
-      assert {:ok, %ToolCategory{} = tool_category} = Equipment.update_tool_category(tool_category, update_attrs)
+      update_attrs = %{
+        full_name: "some updated full_name",
+        id: "some updated id",
+        short_name: "some updated short_name"
+      }
+
+      assert {:ok, %ToolCategory{} = tool_category} =
+               Equipment.update_tool_category(tool_category, update_attrs)
+
       assert tool_category.full_name == "some updated full_name"
       assert tool_category.id == "some updated id"
       assert tool_category.short_name == "some updated short_name"
@@ -293,7 +433,10 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_tool_category/2 with invalid data returns error changeset" do
       tool_category = tool_category_fixture()
-      assert {:error, %Ecto.Changeset{}} = Equipment.update_tool_category(tool_category, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Equipment.update_tool_category(tool_category, @invalid_attrs)
+
       assert tool_category == Equipment.get_tool_category!(tool_category.id)
     end
 
@@ -316,6 +459,27 @@ defmodule HuntCutdown.EquipmentTest do
 
     @invalid_attrs %{category_id: nil, cost: nil, full_name: nil, id: nil, short_name: nil}
 
+    @consumable_category_id consumable_category_id()
+    @consumable_category_id_2 consumable_category_id_2()
+
+    setup do
+      [
+        %{
+          id: @consumable_category_id,
+          full_name: "test_consumable_category",
+          short_name: "test_consumable_category"
+        },
+        %{
+          id: @consumable_category_id_2,
+          full_name: "test_consumable_category_2",
+          short_name: "test_consumable_category_2"
+        }
+      ]
+      |> Enum.map(&Equipment.create_consumable_category(&1))
+
+      :ok
+    end
+
     test "list_consumables/0 returns all consumables" do
       consumable = consumable_fixture()
       assert Equipment.list_consumables() == [consumable]
@@ -327,10 +491,16 @@ defmodule HuntCutdown.EquipmentTest do
     end
 
     test "create_consumable/1 with valid data creates a consumable" do
-      valid_attrs = %{category_id: "some category_id", cost: 42, full_name: "some full_name", id: "some id", short_name: "some short_name"}
+      valid_attrs = %{
+        category_id: @consumable_category_id,
+        cost: 42,
+        full_name: "some full_name",
+        id: "some id",
+        short_name: "some short_name"
+      }
 
       assert {:ok, %Consumable{} = consumable} = Equipment.create_consumable(valid_attrs)
-      assert consumable.category_id == "some category_id"
+      assert consumable.category_id == @consumable_category_id
       assert consumable.cost == 42
       assert consumable.full_name == "some full_name"
       assert consumable.id == "some id"
@@ -343,10 +513,19 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_consumable/2 with valid data updates the consumable" do
       consumable = consumable_fixture()
-      update_attrs = %{category_id: "some updated category_id", cost: 43, full_name: "some updated full_name", id: "some updated id", short_name: "some updated short_name"}
 
-      assert {:ok, %Consumable{} = consumable} = Equipment.update_consumable(consumable, update_attrs)
-      assert consumable.category_id == "some updated category_id"
+      update_attrs = %{
+        category_id: @consumable_category_id_2,
+        cost: 43,
+        full_name: "some updated full_name",
+        id: "some updated id",
+        short_name: "some updated short_name"
+      }
+
+      assert {:ok, %Consumable{} = consumable} =
+               Equipment.update_consumable(consumable, update_attrs)
+
+      assert consumable.category_id == @consumable_category_id_2
       assert consumable.cost == 43
       assert consumable.full_name == "some updated full_name"
       assert consumable.id == "some updated id"
@@ -391,7 +570,9 @@ defmodule HuntCutdown.EquipmentTest do
     test "create_consumable_category/1 with valid data creates a consumable_category" do
       valid_attrs = %{full_name: "some full_name", id: "some id", short_name: "some short_name"}
 
-      assert {:ok, %ConsumableCategory{} = consumable_category} = Equipment.create_consumable_category(valid_attrs)
+      assert {:ok, %ConsumableCategory{} = consumable_category} =
+               Equipment.create_consumable_category(valid_attrs)
+
       assert consumable_category.full_name == "some full_name"
       assert consumable_category.id == "some id"
       assert consumable_category.short_name == "some short_name"
@@ -403,9 +584,16 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_consumable_category/2 with valid data updates the consumable_category" do
       consumable_category = consumable_category_fixture()
-      update_attrs = %{full_name: "some updated full_name", id: "some updated id", short_name: "some updated short_name"}
 
-      assert {:ok, %ConsumableCategory{} = consumable_category} = Equipment.update_consumable_category(consumable_category, update_attrs)
+      update_attrs = %{
+        full_name: "some updated full_name",
+        id: "some updated id",
+        short_name: "some updated short_name"
+      }
+
+      assert {:ok, %ConsumableCategory{} = consumable_category} =
+               Equipment.update_consumable_category(consumable_category, update_attrs)
+
       assert consumable_category.full_name == "some updated full_name"
       assert consumable_category.id == "some updated id"
       assert consumable_category.short_name == "some updated short_name"
@@ -413,14 +601,22 @@ defmodule HuntCutdown.EquipmentTest do
 
     test "update_consumable_category/2 with invalid data returns error changeset" do
       consumable_category = consumable_category_fixture()
-      assert {:error, %Ecto.Changeset{}} = Equipment.update_consumable_category(consumable_category, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Equipment.update_consumable_category(consumable_category, @invalid_attrs)
+
       assert consumable_category == Equipment.get_consumable_category!(consumable_category.id)
     end
 
     test "delete_consumable_category/1 deletes the consumable_category" do
       consumable_category = consumable_category_fixture()
-      assert {:ok, %ConsumableCategory{}} = Equipment.delete_consumable_category(consumable_category)
-      assert_raise Ecto.NoResultsError, fn -> Equipment.get_consumable_category!(consumable_category.id) end
+
+      assert {:ok, %ConsumableCategory{}} =
+               Equipment.delete_consumable_category(consumable_category)
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Equipment.get_consumable_category!(consumable_category.id)
+      end
     end
 
     test "change_consumable_category/1 returns a consumable_category changeset" do

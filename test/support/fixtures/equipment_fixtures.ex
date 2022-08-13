@@ -4,6 +4,30 @@ defmodule HuntCutdown.EquipmentFixtures do
   entities via the `HuntCutdown.Equipment` context.
   """
 
+  def weapon_category_id() do
+    "test_weapon_category_id"
+  end
+
+  def weapon_category_id_2() do
+    "test_weapon_category_id_2"
+  end
+
+  def tool_category_id() do
+    "test_tool_category_id"
+  end
+
+  def tool_category_id_2() do
+    "test_tool_category_id_2"
+  end
+
+  def consumable_category_id() do
+    "test_consumable_category_id"
+  end
+
+  def consumable_category_id_2() do
+    "test_consumable_category_id_2"
+  end
+
   @doc """
   Generate a weapon.
   """
@@ -12,7 +36,7 @@ defmodule HuntCutdown.EquipmentFixtures do
       attrs
       |> Enum.into(%{
         ammo_slot_count: 42,
-        category_id: "some category_id",
+        category_id: weapon_category_id(),
         cost: 42,
         full_name: "some full_name",
         id: "some id",
@@ -51,7 +75,7 @@ defmodule HuntCutdown.EquipmentFixtures do
         full_name: "some full_name",
         id: "some id",
         short_name: "some short_name",
-        weapon_category_id: "some weapon_category_id"
+        weapon_category_id: weapon_category_id()
       })
       |> HuntCutdown.Equipment.create_weapon_ammo()
 
@@ -65,7 +89,7 @@ defmodule HuntCutdown.EquipmentFixtures do
     {:ok, tool} =
       attrs
       |> Enum.into(%{
-        category_id: "some category_id",
+        category_id: tool_category_id(),
         cost: 42,
         full_name: "some full_name",
         id: "some id",
@@ -99,7 +123,7 @@ defmodule HuntCutdown.EquipmentFixtures do
     {:ok, consumable} =
       attrs
       |> Enum.into(%{
-        category_id: "some category_id",
+        category_id: consumable_category_id(),
         cost: 42,
         full_name: "some full_name",
         id: "some id",
