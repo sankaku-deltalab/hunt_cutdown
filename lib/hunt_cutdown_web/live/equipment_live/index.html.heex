@@ -1,1 +1,17 @@
 <h1>Hunt: Cutdown</h1>
+
+<%= if @selecting.category == :weapon do %>
+    <.live_component 
+        module={HuntCutdownWeb.EquipmentLive.Components.WeaponSelector}
+        id={"weapon_selector"}
+        pos={@selecting.pos}
+        weapons={@weapons}
+        categories={@weapon_categories}
+    />
+<% end %>
+
+<.live_component 
+    module={HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots}
+    id={"equipment_slot"}
+    state={@slots}
+/>
