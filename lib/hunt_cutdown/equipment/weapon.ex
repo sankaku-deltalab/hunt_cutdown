@@ -29,4 +29,16 @@ defmodule HuntCutdown.Equipment.Weapon do
       :ammo_slot_count
     ])
   end
+
+  def null_object() do
+    %__MODULE__{
+      id: "_weapon_empty",
+      ammo_slot_count: 0,
+      category_id: "_weapon_empty",
+      cost: 0,
+      full_name: "Empty",
+      short_name: "Empty",
+      size: 0
+    }
+  end
 end

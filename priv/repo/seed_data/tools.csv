@@ -1,5 +1,4 @@
 id,full_name,short_name,cost,category_id
-tool_empty,Empty,Empty,0,tool_empty
 tool_alert_trip_mine,Alert Trip Mine,Alert Trip Mine,60,tool_trap
 tool_blank_fire_decoys,Blank Fire Decoys,Blank Fire Decoys,45,tool_decoy
 tool_choke_bomb,Choke Bomb,Choke Bomb,25,tool_throwable

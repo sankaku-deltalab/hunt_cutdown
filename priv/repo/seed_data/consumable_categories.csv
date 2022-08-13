@@ -1,6 +1,5 @@
 id,full_name,short_name
 consumable_ammo,Ammo,Ammo
-consumable_empty,Empty,Empty
 consumable_explosive,Explosive,Explosive
 consumable_fire,Fire,Fire
 consumable_heal,Heal,Heal

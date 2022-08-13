@@ -22,6 +22,11 @@ defmodule HuntCutdown.SeedModule do
   }
 
   def assign() do
+    # assign_null_objects() # Assign null objects if I need
+    assign_from_tables()
+  end
+
+  defp assign_from_tables() do
     path_base = "priv/repo/seed_data"
 
     data_pairs = [

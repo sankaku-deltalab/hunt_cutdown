@@ -19,4 +19,14 @@ defmodule HuntCutdown.Equipment.Consumable do
     |> cast(attrs, [:id, :full_name, :short_name, :cost, :category_id])
     |> validate_required([:id, :full_name, :short_name, :cost, :category_id])
   end
+
+  def null_object() do
+    %__MODULE__{
+      id: "_consumable_empty",
+      category_id: "_consumable_empty",
+      cost: 0,
+      full_name: "Empty",
+      short_name: "Empty"
+    }
+  end
 end

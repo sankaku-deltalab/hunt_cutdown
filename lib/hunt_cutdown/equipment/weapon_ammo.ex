@@ -19,4 +19,13 @@ defmodule HuntCutdown.Equipment.WeaponAmmo do
     |> cast(attrs, [:id, :full_name, :short_name, :cost, :weapon_category_id])
     |> validate_required([:id, :full_name, :short_name, :cost, :weapon_category_id])
   end
+
+  def null_object() do
+    %__MODULE__{
+      id: "_ammo_empty",
+      full_name: "Empty",
+      short_name: "Empty",
+      weapon_category_id: "_weapon_empty"
+    }
+  end
 end

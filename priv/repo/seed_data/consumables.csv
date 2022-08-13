@@ -1,6 +1,5 @@
 id,full_name,short_name,cost,category_id
 consumable_ammo_box,Ammo Box,Ammo Box,65,consumable_ammo
-consumable_empty,Empty,Empty,0,consumable_empty
 consumable_big_dynamite_bundle,Big Dynamite Bundle,Big Dynamite Bundle,110,consumable_explosive
 consumable_dynamite_bundle,Dynamite Bundle,Dynamite Bundle,75,consumable_explosive
 consumable_dynamite_stick,Dynamite Stick,Dynamite Stick,18,consumable_explosive
