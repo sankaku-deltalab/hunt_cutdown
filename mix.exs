@@ -10,7 +10,8 @@ defmodule HuntCutdown.MixProject do
       compilers: [] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [ignore_warnings: ".dialyzer-ignore"]
     ]
   end
 
