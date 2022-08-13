@@ -1,4 +1,4 @@
-defmodule HuntCutdown.EquipmentSlots do
+defmodule HuntCutdown.Equipment.EquipmentSlots do
   alias HuntCutdown.Equipment.{
     Weapon,
     WeaponAmmo,
