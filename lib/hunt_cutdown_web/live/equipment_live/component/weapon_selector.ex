@@ -1,10 +1,9 @@
 defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
   use HuntCutdownWeb, :live_component
+  import Phoenix.LiveView
 
   alias Phoenix.LiveView.Socket
-
-  @type props :: %{ev_target: any, ev_name: String, text: String}
-  @type state :: %{}
+  alias HuntCutdown.Equipment
 
   @impl true
   def mount(%Socket{} = socket) do
@@ -12,9 +11,21 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
   end
 
   @impl true
-  def render(assigns) do
+  def render(%{pos: pos, weapons: weapons, categories: categories} = assigns) do
     ~H"""
-    <div> Weapon selector </div>
+    <div>
+      <div> Equipment slot </div>
+      <%= for w <- weapons do %>
+        <div
+          style="margin-left: 2vw"
+          phx-click={"put_weapon"}
+          phx-value-pos={@pos}
+          phx-value-weapon={w.id}
+        >
+          <%= w.short_name %>
+        </div>
+      <% end %>
+    </div>
     """
   end
 end

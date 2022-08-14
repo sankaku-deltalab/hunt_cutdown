@@ -37,13 +37,19 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   end
 
   @impl true
-  def handle_event("abort_select", %{pos: pos}, %Socket{} = socket) when pos in 1..2 do
+  def handle_event("abort_select", _params, %Socket{} = socket) do
     socket = socket |> assign(:selecting, @not_selecting)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("start_select_weapon", %{pos: pos}, %Socket{} = socket) when pos in 1..2 do
+  def handle_event("start_select_weapon", %{"pos" => pos}, %Socket{} = socket)
+      when is_bitstring(pos) do
+    handle_event("start_select_weapon", %{"pos" => String.to_integer(pos)}, socket)
+  end
+
+  @impl true
+  def handle_event("start_select_weapon", %{"pos" => pos}, %Socket{} = socket) when pos in 1..2 do
     socket = socket |> assign(:selecting, %{category: :weapon, pos: pos})
     {:noreply, socket}
   end
@@ -51,7 +57,22 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   @impl true
   def handle_event(
         "put_weapon",
-        %{pos: pos, weapon: %Equipment.Weapon{} = weapon},
+        %{"pos" => pos, "weapon" => weapon_id} = params,
+        %Socket{} = socket
+      )
+      when is_bitstring(pos) and is_bitstring(weapon_id) do
+    params =
+      params
+      |> Map.update!("pos", &String.to_integer(&1))
+      |> Map.update!("weapon", &Equipment.get_weapon!(&1))
+
+    handle_event("put_weapon", params, socket)
+  end
+
+  @impl true
+  def handle_event(
+        "put_weapon",
+        %{"pos" => pos, "weapon" => %Equipment.Weapon{} = weapon},
         %Socket{} = socket
       )
       when pos in 1..2 do
@@ -66,7 +87,22 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   @impl true
   def handle_event(
         "start_select_ammo",
-        %{weapon_pos: weapon_pos, ammo_pos: ammo_pos},
+        %{"weapon_pos" => weapon_pos, "ammo_pos" => ammo_pos} = params,
+        %Socket{} = socket
+      )
+      when is_bitstring(weapon_pos) and is_bitstring(ammo_pos) do
+    params =
+      params
+      |> Map.update!("weapon_pos", &String.to_integer(&1))
+      |> Map.update!("ammo_pos", &String.to_integer(&1))
+
+    handle_event("start_select_ammo", params, socket)
+  end
+
+  @impl true
+  def handle_event(
+        "start_select_ammo",
+        %{"weapon_pos" => weapon_pos, "ammo_pos" => ammo_pos},
         %Socket{} = socket
       )
       when weapon_pos in 1..2 and ammo_pos in 1..2 do
@@ -80,7 +116,27 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   @impl true
   def handle_event(
         "put_ammo",
-        %{weapon_pos: weapon_pos, ammo_pos: ammo_pos, ammo: %Equipment.WeaponAmmo{} = ammo},
+        %{"weapon_pos" => weapon_pos, "ammo_pos" => ammo_pos, "ammo" => ammo_id} = params,
+        %Socket{} = socket
+      )
+      when is_bitstring(weapon_pos) and is_bitstring(ammo_pos) and is_bitstring(ammo_id) do
+    params =
+      params
+      |> Map.update!("weapon_pos", &String.to_integer(&1))
+      |> Map.update!("ammo_pos", &String.to_integer(&1))
+      |> Map.update!("ammo", &Equipment.get_weapon_ammo!(&1))
+
+    handle_event("put_ammo", params, socket)
+  end
+
+  @impl true
+  def handle_event(
+        "put_ammo",
+        %{
+          "weapon_pos" => weapon_pos,
+          "ammo_pos" => ammo_pos,
+          "ammo" => %Equipment.WeaponAmmo{} = ammo
+        },
         %Socket{} = socket
       )
       when weapon_pos in 1..2 and ammo_pos in 1..2 do
@@ -93,7 +149,14 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   end
 
   @impl true
-  def handle_event("start_select_tool", %{pos: pos}, %Socket{} = socket) when pos in 1..2 do
+  def handle_event("start_select_tool", %{"pos" => pos} = params, %Socket{} = socket)
+      when is_bitstring(pos) do
+    params = params |> Map.update!("pos", &String.to_integer(&1))
+    handle_event("start_select_tool", params, socket)
+  end
+
+  @impl true
+  def handle_event("start_select_tool", %{"pos" => pos}, %Socket{} = socket) when pos in 1..2 do
     socket = socket |> assign(:selecting, %{category: :tool, pos: pos})
     {:noreply, socket}
   end
@@ -101,7 +164,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   @impl true
   def handle_event(
         "put_tool",
-        %{pos: pos, tool: %Equipment.Tool{} = tool},
+        %{"pos" => pos, tool: %Equipment.Tool{} = tool},
         %Socket{} = socket
       )
       when pos in 1..2 do
@@ -114,7 +177,8 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   end
 
   @impl true
-  def handle_event("start_select_consumable", %{pos: pos}, %Socket{} = socket) when pos in 1..2 do
+  def handle_event("start_select_consumable", %{"pos" => pos}, %Socket{} = socket)
+      when pos in 1..2 do
     socket = socket |> assign(:selecting, %{category: :consumable, pos: pos})
     {:noreply, socket}
   end
@@ -122,7 +186,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   @impl true
   def handle_event(
         "put_consumable",
-        %{pos: pos, consumable: %Equipment.Consumable{} = consumable},
+        %{"pos" => pos, consumable: %Equipment.Consumable{} = consumable},
         %Socket{} = socket
       )
       when pos in 1..2 do
@@ -134,8 +198,8 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
     {:noreply, socket}
   end
 
-  @impl true
-  def handle_event(_event, _params, %Socket{} = socket) do
-    {:noreply, socket}
-  end
+  # @impl true
+  # def handle_event(_event, _params, %Socket{} = socket) do
+  #   {:noreply, socket}
+  # end
 end

@@ -40,7 +40,18 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
           consumable_4: Consumable
         }
 
-  def can_put_weapon?(slots, pos, %Weapon{} = new_weapon) when pos in 1..2 do
+  def cost(%__MODULE__{} = slots) do
+    weapons = 1..2 |> Enum.map(&get_weapon(slots, &1))
+    ammos = 1..2 |> Enum.flat_map(fn w_pos -> Enum.map(1..2, &get_ammo(slots, w_pos, &1)) end)
+    tools = 1..4 |> Enum.map(&get_tool(slots, &1))
+    consumables = 1..4 |> Enum.map(&get_consumable(slots, &1))
+
+    (weapons ++ ammos ++ tools ++ consumables)
+    |> Enum.map(& &1.cost)
+    |> Enum.sum()
+  end
+
+  def can_put_weapon?(%__MODULE__{} = slots, pos, %Weapon{} = new_weapon) when pos in 1..2 do
     another_pos =
       if pos == 1 do
         2
@@ -48,7 +59,7 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
         1
       end
 
-    another_weapon = slots |> raw_get_weapon(another_pos)
+    another_weapon = slots |> get_weapon(another_pos)
     another_weapon.size + new_weapon.size <= @total_weapon_size_max
   end
 
@@ -59,10 +70,18 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
         %WeaponAmmo{weapon_category_id: ammo_cid}
       )
       when weapon_pos in 1..2 and ammo_pos in 1..2 do
-    weapon = raw_get_weapon(slots, weapon_pos)
+    weapon = get_weapon(slots, weapon_pos)
     slot_size = weapon.ammo_slot_count
     weapon_cid = weapon.category_id
     ammo_cid == weapon_cid and slot_size >= ammo_pos
+  end
+
+  def get_weapon(%__MODULE__{} = slots, pos) when pos in 1..2 do
+    if pos == 1 do
+      slots.weapon_1
+    else
+      slots.weapon_2
+    end
   end
 
   def put_weapon(%__MODULE__{} = slots, pos, %Weapon{} = weapon) when pos in 1..2 do
@@ -83,6 +102,16 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
     |> raw_put_ammo(pos, 2, WeaponAmmo.null_object())
   end
 
+  def get_ammo(%__MODULE__{} = slots, weapon_pos, ammo_pos)
+      when weapon_pos in 1..2 and ammo_pos in 1..2 do
+    cond do
+      weapon_pos == 1 and ammo_pos == 1 -> slots.ammo_1_1
+      weapon_pos == 1 and ammo_pos == 2 -> slots.ammo_1_2
+      weapon_pos == 2 and ammo_pos == 1 -> slots.ammo_2_1
+      weapon_pos == 2 and ammo_pos == 2 -> slots.ammo_2_2
+    end
+  end
+
   def put_ammo(%__MODULE__{} = slots, weapon_pos, ammo_pos, %WeaponAmmo{} = ammo)
       when weapon_pos in 1..2 and ammo_pos in 1..2 do
     if can_put_ammo?(slots, weapon_pos, ammo_pos, ammo) do
@@ -99,12 +128,30 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
     |> raw_put_ammo(weapon_pos, ammo_pos, WeaponAmmo.null_object())
   end
 
+  def get_tool(%__MODULE__{} = slots, pos) when pos in 1..4 do
+    cond do
+      pos == 1 -> slots.tool_1
+      pos == 2 -> slots.tool_2
+      pos == 3 -> slots.tool_3
+      pos == 4 -> slots.tool_4
+    end
+  end
+
   def put_tool(%__MODULE__{} = slots, pos, %Tool{} = tool) when pos in 1..4 do
     raw_put_tool(slots, pos, tool)
   end
 
   def drop_tool(%__MODULE__{} = slots, pos) when pos in 1..4 do
     raw_put_tool(slots, pos, Tool.null_object())
+  end
+
+  def get_consumable(%__MODULE__{} = slots, pos) when pos in 1..4 do
+    cond do
+      pos == 1 -> slots.consumable_1
+      pos == 2 -> slots.consumable_2
+      pos == 3 -> slots.consumable_3
+      pos == 4 -> slots.consumable_4
+    end
   end
 
   def put_consumable(%__MODULE__{} = slots, pos, %Consumable{} = consumable) when pos in 1..4 do
@@ -115,14 +162,6 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
     raw_put_consumable(slots, pos, Consumable.null_object())
   end
 
-  defp raw_get_weapon(%__MODULE__{} = slots, pos) when pos in 1..2 do
-    if pos == 1 do
-      slots.weapon_1
-    else
-      slots.weapon_2
-    end
-  end
-
   defp raw_put_weapon(%__MODULE__{} = slots, pos, %Weapon{} = weapon) when pos in 1..2 do
     if pos == 1 do
       Map.put(slots, :weapon_1, weapon)
@@ -130,16 +169,6 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
       Map.put(slots, :weapon_2, weapon)
     end
   end
-
-  # defp raw_get_ammo(%__MODULE__{} = slots, weapon_pos, ammo_pos)
-  #      when weapon_pos in 1..2 and ammo_pos in 1..2 do
-  #   cond do
-  #     weapon_pos == 1 and ammo_pos == 1 -> slots.ammo_1_1
-  #     weapon_pos == 1 and ammo_pos == 2 -> slots.ammo_1_2
-  #     weapon_pos == 2 and ammo_pos == 1 -> slots.ammo_2_1
-  #     weapon_pos == 2 and ammo_pos == 2 -> slots.ammo_2_2
-  #   end
-  # end
 
   defp raw_put_ammo(%__MODULE__{} = slots, weapon_pos, ammo_pos, %WeaponAmmo{} = ammo)
        when weapon_pos in 1..2 and ammo_pos in 1..2 do
