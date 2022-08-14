@@ -25,7 +25,8 @@ defmodule HuntCutdown.Equipment.WeaponAmmo do
       id: "_ammo_empty",
       full_name: "Empty",
       short_name: "Empty",
-      weapon_category_id: "_weapon_empty"
+      weapon_category_id: "_weapon_empty",
+      cost: 0
     }
   end
 end
