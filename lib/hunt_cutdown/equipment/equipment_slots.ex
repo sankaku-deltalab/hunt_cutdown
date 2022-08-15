@@ -87,6 +87,11 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
     |> is_nil()
   end
 
+  def can_put_consumable?(%__MODULE__{} = _slots, pos, %Consumable{} = _new_consumable)
+      when pos in 1..4 do
+    true
+  end
+
   def get_weapon(%__MODULE__{} = slots, pos) when pos in 1..2 do
     if pos == 1 do
       slots.weapon_1

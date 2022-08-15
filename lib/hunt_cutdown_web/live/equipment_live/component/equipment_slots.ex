@@ -60,8 +60,14 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
 
       <div>
         <div>Consumables</div>
-        <%= for i <- 1..4 do %>
-          <div style="margin-left: 2vw"><%= EquipmentSlots.get_consumable(@state, i).full_name %></div>
+        <%= for consumable_pos <- 1..4 do %>
+          <div
+            style="margin-left: 2vw"
+            phx-click={"start_select_consumable"}
+            phx-value-pos={consumable_pos}
+          >
+            <.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} />
+          </div>
         <% end %>
       </div>
 

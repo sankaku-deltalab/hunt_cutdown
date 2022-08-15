@@ -34,6 +34,17 @@
     />
 <% end %>
 
+<%= if @selecting.category == :consumable do %>
+    <.live_component 
+        module={HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector}
+        id={"tool_selector"}
+        slots={@slots}
+        pos={@selecting.pos}
+        consumables={@consumables}
+        categories={@consumable_categories}
+    />
+<% end %>
+
 <%= if @selecting.category == :not_selecting do %>
     <.live_component 
         module={HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots}

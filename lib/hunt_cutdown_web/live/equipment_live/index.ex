@@ -192,19 +192,45 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   end
 
   @impl true
+  def handle_event(
+        "start_select_consumable" = event,
+        %{"pos" => pos} = params,
+        %Socket{} = socket
+      )
+      when pos |> is_bitstring() do
+    params = params |> Map.update!("pos", &String.to_integer(&1))
+    handle_event(event, params, socket)
+  end
+
+  @impl true
   def handle_event("start_select_consumable", %{"pos" => pos}, %Socket{} = socket)
-      when pos in 1..2 do
+      when pos in 1..4 do
     socket = socket |> assign(:selecting, %{category: :consumable, pos: pos})
     {:noreply, socket}
   end
 
   @impl true
   def handle_event(
-        "put_consumable",
-        %{"pos" => pos, consumable: %Equipment.Consumable{} = consumable},
+        "put_consumable" = event,
+        %{"pos" => pos, "consumable" => consumable_id} = params,
         %Socket{} = socket
       )
-      when pos in 1..2 do
+      when pos |> is_bitstring() and consumable_id |> is_bitstring() do
+    params =
+      params
+      |> Map.update!("pos", &String.to_integer(&1))
+      |> Map.update!("consumable", &Equipment.get_consumable!(&1))
+
+    handle_event(event, params, socket)
+  end
+
+  @impl true
+  def handle_event(
+        "put_consumable",
+        %{"pos" => pos, "consumable" => %Equipment.Consumable{} = consumable},
+        %Socket{} = socket
+      )
+      when pos in 1..4 do
     socket =
       socket
       |> update(:slots, &Equipment.EquipmentSlots.put_consumable(&1, pos, consumable))
