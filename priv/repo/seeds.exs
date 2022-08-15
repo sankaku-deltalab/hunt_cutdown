@@ -22,8 +22,8 @@ defmodule HuntCutdown.SeedModule do
   }
 
   def assign() do
-    # assign_null_objects() # Assign null objects if I need
     assign_from_tables()
+    assgin_null_objects()
   end
 
   defp assign_from_tables() do
@@ -40,15 +40,19 @@ defmodule HuntCutdown.SeedModule do
     ]
 
     for {struct, path_rel} <- data_pairs do
-      path = Path.join(path_base, path_rel)
-      df = Explorer.DataFrame.from_csv!(path)
-
-      for row <- Explorer.DataFrame.to_rows(df) do
-        struct
-        |> struct.__struct__.changeset(row)
-        |> HuntCutdown.Repo.insert!()
-      end
+      Path.join(path_base, path_rel)
+      |> Explorer.DataFrame.from_csv!()
+      |> Explorer.DataFrame.to_rows()
+      |> Enum.map(&struct.__struct__.changeset(struct, &1))
+      |> Enum.map(&HuntCutdown.Repo.insert!(&1))
     end
+  end
+
+  defp assgin_null_objects() do
+    HuntCutdown.Equipment.list_weapon_categories()
+    |> Enum.map(&WeaponAmmo.null_object_for(&1.id))
+    |> Enum.map(&WeaponAmmo.changeset(&1, %{}))
+    |> Enum.map(&HuntCutdown.Repo.insert!(&1))
   end
 end
 

@@ -32,13 +32,17 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
             </div>
             <div style="margin-left: 2vw">
               <%= for am_pos <- 1..2 do %>
-                <div
-                  phx-click={"start_select_ammo"}
-                  phx-value-weapon_pos={w_pos}
-                  phx-value-ammo_pos={am_pos}
-                >
-                  <.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} />
-                </div>
+                <%= if EquipmentSlots.get_weapon(@state, w_pos).ammo_slot_count < am_pos do %>
+                  <div>-</div>
+                <% else %>
+                  <div
+                    phx-click={"start_select_ammo"}
+                    phx-value-weapon_pos={w_pos}
+                    phx-value-ammo_pos={am_pos}
+                  >
+                    <.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} />
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div>

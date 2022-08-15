@@ -15,12 +15,9 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
       category =
         Enum.find(categories, &(&1.id == category_id)) || Equipment.WeaponCategory.null_object()
 
-      push = fn list, head -> [head | list] end
-
       ammos =
         ammos
         |> Enum.filter(&(&1.weapon_category_id == category_id))
-        |> push.(Equipment.WeaponAmmo.null_object_for(category_id))
         |> Enum.sort_by(&{&1.full_name})
         |> Enum.map(fn am ->
           {Equipment.EquipmentSlots.can_put_ammo?(slots, weapon_pos, ammo_pos, am), am}
