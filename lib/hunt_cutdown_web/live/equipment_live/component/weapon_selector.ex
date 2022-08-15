@@ -46,6 +46,11 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
     ~H"""
     <div>
       <div> Equipment slot </div>
+      <div
+        phx-click={"abort_select"}
+      >
+        [Close]
+      </div>
       <%= for weapon_sets <- WeaponSet.create_sets(slots, pos, weapons, categories) do %>
         <div
           style="margin-left: 2vw"

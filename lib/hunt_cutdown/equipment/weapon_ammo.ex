@@ -23,9 +23,19 @@ defmodule HuntCutdown.Equipment.WeaponAmmo do
   def null_object() do
     %__MODULE__{
       id: "_ammo_empty",
-      full_name: "Empty",
-      short_name: "Empty",
+      full_name: "Default",
+      short_name: "Default",
       weapon_category_id: "_weapon_empty",
+      cost: 0
+    }
+  end
+
+  def null_object_for(weapon_category_id) when is_bitstring(weapon_category_id) do
+    %__MODULE__{
+      id: "_ammo_empty_#{weapon_category_id}",
+      full_name: "Default",
+      short_name: "Default",
+      weapon_category_id: weapon_category_id,
       cost: 0
     }
   end

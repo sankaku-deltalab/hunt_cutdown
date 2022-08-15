@@ -22,7 +22,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
       |> assign(:selecting, @not_selecting)
       |> assign(:weapons, Equipment.list_weapons())
       |> assign(:weapon_categories, Equipment.list_weapon_categories())
-      |> assign(:weapon_ammo, Equipment.list_weapon_ammos())
+      |> assign(:ammos, Equipment.list_weapon_ammos())
       |> assign(:tools, Equipment.list_tools())
       |> assign(:tool_categories, Equipment.list_tool_categories())
       |> assign(:consumables, Equipment.list_consumables())

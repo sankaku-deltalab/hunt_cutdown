@@ -9,6 +9,12 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
     {:ok, socket}
   end
 
+  def equipment_present(%{eq: eq} = assigns) do
+    ~H"""
+    <%= "#{eq.full_name} ($#{eq.cost})" %>
+    """
+  end
+
   @impl true
   def render(%{state: %EquipmentSlots{} = _} = assigns) do
     ~H"""
@@ -16,20 +22,24 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
       <div>Total Cost: $<%= EquipmentSlots.cost(@state) %></div>
       <div>
         <div>Weapons</div>
-        <%= for i <- 1..2 do %>
+        <%= for w_pos <- 1..2 do %>
           <div style="margin-left: 2vw">
             <div
               phx-click={"start_select_weapon"}
-              phx-value-pos={i}
+              phx-value-pos={w_pos}
             >
-              <%= for w <- [EquipmentSlots.get_weapon(@state, i)] do %>
-                <%= "#{w.full_name} ($#{w.cost})" %>
-              <% end %>
-
+              <.equipment_present eq={EquipmentSlots.get_weapon(@state, w_pos)} />
             </div>
             <div style="margin-left: 2vw">
-              <%= EquipmentSlots.get_ammo(@state, i, 1).full_name %>
-              <%= EquipmentSlots.get_ammo(@state, i, 2).full_name %>
+              <%= for am_pos <- 1..2 do %>
+                <div
+                  phx-click={"start_select_ammo"}
+                  phx-value-weapon_pos={w_pos}
+                  phx-value-ammo_pos={am_pos}
+                >
+                  <.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} />
+                </div>
+              <% end %>
             </div>
           </div>
         <% end %>
