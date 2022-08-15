@@ -23,6 +23,17 @@
     />
 <% end %>
 
+<%= if @selecting.category == :tool do %>
+    <.live_component 
+        module={HuntCutdownWeb.EquipmentLive.Components.ToolSelector}
+        id={"tool_selector"}
+        slots={@slots}
+        pos={@selecting.pos}
+        tools={@tools}
+        categories={@tool_categories}
+    />
+<% end %>
+
 <%= if @selecting.category == :not_selecting do %>
     <.live_component 
         module={HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots}

@@ -47,8 +47,14 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
 
       <div>
         <div>Tools</div>
-        <%= for i <- 1..4 do %>
-          <div style="margin-left: 2vw"><%= EquipmentSlots.get_tool(@state, i).full_name %></div>
+        <%= for tool_pos <- 1..4 do %>
+          <div
+            style="margin-left: 2vw"
+            phx-click={"start_select_tool"}
+            phx-value-pos={tool_pos}
+          >
+            <.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} />
+          </div>
         <% end %>
       </div>
 

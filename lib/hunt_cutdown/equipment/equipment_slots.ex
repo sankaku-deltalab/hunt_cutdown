@@ -76,6 +76,17 @@ defmodule HuntCutdown.Equipment.EquipmentSlots do
     ammo_cid == weapon_cid and slot_size >= ammo_pos
   end
 
+  def can_put_tool?(%__MODULE__{} = slots, pos, %Tool{} = new_tool) when pos in 1..4 do
+    other_tools =
+      1..4
+      |> Enum.filter(&(&1 != pos))
+      |> Enum.map(&get_tool(slots, &1))
+
+    other_tools
+    |> Enum.find(&(&1.id == new_tool.id))
+    |> is_nil()
+  end
+
   def get_weapon(%__MODULE__{} = slots, pos) when pos in 1..2 do
     if pos == 1 do
       slots.weapon_1
