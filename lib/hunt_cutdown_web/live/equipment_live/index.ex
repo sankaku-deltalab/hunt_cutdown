@@ -43,9 +43,11 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   end
 
   @impl true
-  def handle_event("start_select_weapon", %{"pos" => pos}, %Socket{} = socket)
-      when is_bitstring(pos) do
-    handle_event("start_select_weapon", %{"pos" => String.to_integer(pos)}, socket)
+  def handle_event("start_select_weapon" = event, %{"pos" => pos} = params, %Socket{} = socket)
+      when pos |> is_bitstring() do
+    params = params |> Map.update!("pos", &String.to_integer(&1))
+
+    handle_event(event, params, socket)
   end
 
   @impl true
@@ -56,17 +58,17 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
 
   @impl true
   def handle_event(
-        "put_weapon",
+        "put_weapon" = event,
         %{"pos" => pos, "weapon" => weapon_id} = params,
         %Socket{} = socket
       )
-      when is_bitstring(pos) and is_bitstring(weapon_id) do
+      when pos |> is_bitstring() and weapon_id |> is_bitstring() do
     params =
       params
       |> Map.update!("pos", &String.to_integer(&1))
       |> Map.update!("weapon", &Equipment.get_weapon!(&1))
 
-    handle_event("put_weapon", params, socket)
+    handle_event(event, params, socket)
   end
 
   @impl true
@@ -86,17 +88,17 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
 
   @impl true
   def handle_event(
-        "start_select_ammo",
+        "start_select_ammo" = event,
         %{"weapon_pos" => weapon_pos, "ammo_pos" => ammo_pos} = params,
         %Socket{} = socket
       )
-      when is_bitstring(weapon_pos) and is_bitstring(ammo_pos) do
+      when weapon_pos |> is_bitstring() and ammo_pos |> is_bitstring() do
     params =
       params
       |> Map.update!("weapon_pos", &String.to_integer(&1))
       |> Map.update!("ammo_pos", &String.to_integer(&1))
 
-    handle_event("start_select_ammo", params, socket)
+    handle_event(event, params, socket)
   end
 
   @impl true
@@ -115,18 +117,20 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
 
   @impl true
   def handle_event(
-        "put_ammo",
+        "put_ammo" = event,
         %{"weapon_pos" => weapon_pos, "ammo_pos" => ammo_pos, "ammo" => ammo_id} = params,
         %Socket{} = socket
       )
-      when is_bitstring(weapon_pos) and is_bitstring(ammo_pos) and is_bitstring(ammo_id) do
+      when weapon_pos |> is_bitstring() and
+             ammo_pos |> is_bitstring() and
+             ammo_id |> is_bitstring() do
     params =
       params
       |> Map.update!("weapon_pos", &String.to_integer(&1))
       |> Map.update!("ammo_pos", &String.to_integer(&1))
       |> Map.update!("ammo", &Equipment.get_weapon_ammo!(&1))
 
-    handle_event("put_ammo", params, socket)
+    handle_event(event, params, socket)
   end
 
   @impl true
@@ -149,10 +153,10 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   end
 
   @impl true
-  def handle_event("start_select_tool", %{"pos" => pos} = params, %Socket{} = socket)
-      when is_bitstring(pos) do
+  def handle_event("start_select_tool" = event, %{"pos" => pos} = params, %Socket{} = socket)
+      when pos |> is_bitstring() do
     params = params |> Map.update!("pos", &String.to_integer(&1))
-    handle_event("start_select_tool", params, socket)
+    handle_event(event, params, socket)
   end
 
   @impl true
