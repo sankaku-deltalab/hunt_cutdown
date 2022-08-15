@@ -1,30 +1,35 @@
 id,full_name,short_name
+weapon_berthier_mle_1892,Berthier Mle 1892,Berthier
 weapon_bomb_lance,Bomb Lance,Bomb Lance
-weapon_bornheim_no_3,Bornheim No. 3,Bornheim No. 3
-weapon_caldwell_conversion_pistol,Caldwell Conversion Pistol,Caldwell Conversion Pistol
-weapon_caldwell_pax,Caldwell Pax,Caldwell Pax
-weapon_caldwell_rival_78,Caldwell Rival 78,Caldwell Rival 78
-weapon_cavalry_saber,Cavalry Saber,Cavalry Saber
-weapon_combat_axe,Combat Axe,Combat Axe
+weapon_bornheim_no_3,Bornheim No. 3,Bornheim
+weapon_caldwell_92_new_army,Caldwell 92 New Army,New Army
+weapon_caldwell_conversion_pistol,Caldwell Conversion Pistol,Conversion Pistol
+weapon_caldwell_conversion_pistol_uppercut,Caldwell Conversion Uppercut,Uppercut
+weapon_caldwell_pax,Caldwell Pax,Pax
+weapon_caldwell_rival_78,Caldwell Rival 78,Rival
+weapon_cavalry_saber,Cavalry Saber,Saber
+weapon_combat_axe,Combat Axe,Axe
 weapon_crossbow,Crossbow,Crossbow
-weapon_crown_and_king_auto_5,Crown & King Auto-5,Crown & King Auto-5
-weapon_dolch_96,Dolch 96,Dolch 96
+weapon_crown_and_king_auto_5,Crown & King Auto-5,Auto-5
+weapon_dolch_96,Dolch 96,Dolch
 weapon_hand_crossbow,Hand Crossbow,Hand Crossbow
-weapon_lebel_1886,Lebel 1886,Lebel 1886
-weapon_lemat_mark_ii_revolver,LeMat Mark II Revolver,LeMat Mark II Revolver
+weapon_hunting_bow,Hunting Bow,Bow
+weapon_lebel_1886,Lebel 1886,Lebel
+weapon_lemat_mark_ii_revolver,LeMat Mark II Revolver,LeMat
 weapon_machete,Machete,Machete
-weapon_martini_henry_ic1,Martini-Henry IC1,Martini-Henry IC1
-weapon_mosin_nagant_m1891,Mosin-Nagant M1891,Mosin-Nagant M1891
-weapon_nagant_m1895,Nagant M1895,Nagant M1895
-weapon_nagant_m1895_officer,Nagant M1895 Officer,Nagant M1895 Officer
-weapon_nagant_m1895_officer_carbine,Nagant M1895 Officer Carbine,Nagant M1895 Officer Carbine
-weapon_nitro_express_rifle,Nitro Express Rifle,Nitro Express Rifle
-weapon_romero_77,Romero 77,Romero 77
-weapon_sparks_lrr,Sparks LRR,Sparks LRR
-weapon_specter_1882,Specter 1882,Specter 1882
-weapon_springfield_1866,Springfield 1866,Springfield 1866
-weapon_vetterli_71_karabiner,Vetterli 71 Karabiner,Vetterli 71 Karabiner
-weapon_winfield_1887_terminus,Winfield 1887 Terminus,Winfield 1887 Terminus
-weapon_winfield_m1873,Winfield M1873,Winfield M1873
-weapon_winfield_m1873c,Winfield M1873C,Winfield M1873C
-weapon_winfield_m1876_centennial,Winfield M1876 Centennial,Winfield M1876 Centennial
+weapon_martini_henry_ic1,Martini-Henry IC1,Martini
+weapon_mosin_nagant_m1891,Mosin-Nagant M1891,Mosin
+weapon_nagant_m1895,Nagant M1895,Nagant
+weapon_nagant_m1895_officer,Nagant M1895 Officer,Officer
+weapon_nitro_express_rifle,Nitro Express Rifle,Nitro
+weapon_romero_77,Romero 77,Romero
+weapon_scottfield_model_3,Scottfield Model 3,Scottfield
+weapon_sparks_lrr,Sparks LRR,Sparks
+weapon_specter_1882,Specter 1882,Specter
+weapon_springfield_1866,Springfield 1866,Springfield
+weapon_vetterli_71_karabiner,Vetterli 71 Karabiner,Vetterli
+weapon_winfield_1887_terminus,Winfield 1887 Terminus,Terminus
+weapon_winfield_1893_slate,Winfield 1893 Slate,Slate
+weapon_winfield_m1873,Winfield M1873,Winfield
+weapon_winfield_m1873c,Winfield M1873C,Winfield C
+weapon_winfield_m1876_centennial,Winfield M1876 Centennial,Centennial

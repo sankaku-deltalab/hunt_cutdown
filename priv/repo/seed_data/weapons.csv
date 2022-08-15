@@ -1,75 +1,93 @@
 id,full_name,short_name,cost,category_id,size,ammo_slot_count
+weapon_berthier_mle_1892,Berthier Mle 1892,Berthier,356,weapon_berthier_mle_1892,3,1
+weapon_berthier_mle_1892_deadeye,Berthier Mle 1892 Deadeye,Berthier Deadeye,388,weapon_berthier_mle_1892,3,1
+weapon_berthier_mle_1892_riposte,Berthier Mle 1892 Riposte,Berthier Riposte,370,weapon_berthier_mle_1892,3,1
 weapon_bomb_lance,Bomb Lance,Bomb Lance,199,weapon_bomb_lance,3,0
-weapon_bornheim_no_3,Bornheim No. 3,Bornheim No. 3,201,weapon_bornheim_no_3,1,1
-weapon_bornheim_no_3_extended,Bornheim No. 3 Extended,Bornheim No. 3 Extended,306,weapon_bornheim_no_3,1,1
-weapon_bornheim_no_3_match,Bornheim No. 3 Match,Bornheim No. 3 Match,224,weapon_bornheim_no_3,2,1
-weapon_caldwell_conversion_pistol,Caldwell Conversion Pistol,Caldwell Conversion Pistol,26,weapon_caldwell_conversion_pistol,1,1
-weapon_caldwell_pax,Caldwell Pax,Caldwell Pax,100,weapon_caldwell_pax,1,1
-weapon_caldwell_pax_claw,Caldwell Pax Claw,Caldwell Pax Claw,125,weapon_caldwell_pax,1,1
-weapon_caldwell_rival_78,Caldwell Rival 78,Caldwell Rival 78,100,weapon_caldwell_rival_78,3,1
-weapon_caldwell_rival_78_handcannon,Caldwell Rival 78 Handcannon,Caldwell Rival 78 Handcannon,85,weapon_caldwell_rival_78,2,1
-weapon_cavalry_saber,Cavalry Saber,Cavalry Saber,60,weapon_cavalry_saber,1,0
-weapon_combat_axe,Combat Axe,Combat Axe,5,weapon_combat_axe,2,0
-weapon_crossbow,Crossbow,Crossbow,73,weapon_crossbow,3,2
-weapon_crown_and_king_auto_5,Crown & King Auto-5,Crown & King Auto-5,600,weapon_crown_and_king_auto_5,3,1
-weapon_dolch_96,Dolch 96,Dolch 96,750,weapon_dolch_96,1,1
-weapon_dolch_96_precision,Dolch 96 Precision,Dolch 96 Precision,790,weapon_dolch_96,2,1
-weapon_hand_crossbow,Hand Crossbow,Hand Crossbow,35,weapon_hand_crossbow,1,2
-weapon_lebel_1886,Lebel 1886,Lebel 1886,397,weapon_lebel_1886,3,1
-weapon_lebel_1886_marksman,Lebel 1886 Marksman,Lebel 1886 Marksman,437,weapon_lebel_1886,3,1
-weapon_lebel_1886_talon,Lebel 1886 Talon,Lebel 1886 Talon,422,weapon_lebel_1886,3,1
-weapon_lemat_mark_ii_revolver,LeMat Mark II Revolver,LeMat Mark II Revolver,95,weapon_lemat_mark_ii_revolver,1,0
+weapon_bornheim_no_3,Bornheim No. 3,Bornheim,201,weapon_bornheim_no_3,1,1
+weapon_bornheim_no_3_extended,Bornheim No. 3 Extended,Bornheim Extended,306,weapon_bornheim_no_3,1,1
+weapon_bornheim_no_3_match,Bornheim No. 3 Match,Bornheim Match,224,weapon_bornheim_no_3,2,1
+weapon_caldwell_92_new_army,Caldwell 92 New Army,New Army,90,weapon_caldwell_92_new_army,1,1
+weapon_caldwell_conversion_pistol,Caldwell Conversion Pistol,Conversion Pistol,26,weapon_caldwell_conversion_pistol,1,1
+weapon_caldwell_conversion_chain_pistol,Caldwell Conversion Chain Pistol,Conversion Chain Pistol,50,weapon_caldwell_conversion_pistol,1,1
+weapon_caldwell_conversion_pistol_uppercut,Caldwell Conversion Uppercut,Uppercut,275,weapon_caldwell_conversion_pistol_uppercut,1,1
+weapon_caldwell_pax,Caldwell Pax,Pax,100,weapon_caldwell_pax,1,1
+weapon_caldwell_pax_claw,Caldwell Pax Claw,Pax Claw,125,weapon_caldwell_pax,1,1
+weapon_caldwell_rival_78,Caldwell Rival 78,Rival,100,weapon_caldwell_rival_78,3,1
+weapon_caldwell_rival_78_handcannon,Caldwell Rival 78 Handcannon,Rival Handcannon,85,weapon_caldwell_rival_78,2,1
+weapon_cavalry_saber,Cavalry Saber,Saber,60,weapon_cavalry_saber,1,0
+weapon_combat_axe,Combat Axe,Axe,5,weapon_combat_axe,2,0
+weapon_crossbow,Crossbow,Crossbow,50,weapon_crossbow,3,2
+weapon_crown_and_king_auto_5,Crown & King Auto-5,Auto-5,600,weapon_crown_and_king_auto_5,3,1
+weapon_dolch_96,Dolch 96,Dolch,750,weapon_dolch_96,1,1
+weapon_dolch_96_precision,Dolch 96 Precision,Dolch Precision,790,weapon_dolch_96,2,1
+weapon_hand_crossbow,Hand Crossbow,Hand Crossbow,30,weapon_hand_crossbow,1,2
+weapon_hunting_bow,Hunting Bow,Hunting Bow,57,weapon_hunting_bow,2,2
+weapon_lebel_1886,Lebel 1886,Lebel,397,weapon_lebel_1886,3,1
+weapon_lebel_1886_aperture,Lebel 1886 Aperture,Lebel Aperture,425,weapon_lebel_1886,3,1
+weapon_lebel_1886_marksman,Lebel 1886 Marksman,Lebel Marksman,437,weapon_lebel_1886,3,1
+weapon_lebel_1886_talon,Lebel 1886 Talon,Lebel Talon,422,weapon_lebel_1886,3,1
+weapon_lemat_mark_ii_revolver,LeMat Mark II Revolver,LeMat,95,weapon_lemat_mark_ii_revolver,1,0
 weapon_machete,Machete,Machete,18,weapon_machete,1,0
-weapon_martini_henry_ic1,Martini-Henry IC1,Martini-Henry IC1,122,weapon_martini_henry_ic1,3,2
-weapon_martini_henry_ic1_deadeye,Martini-Henry IC1 Deadeye,Martini-Henry IC1 Deadeye,145,weapon_martini_henry_ic1,3,2
-weapon_martini_henry_ic1_marksman,Martini-Henry IC1 Marksman,Martini-Henry IC1 Marksman,173,weapon_martini_henry_ic1,3,2
-weapon_martini_henry_ic1_riposte,Martini-Henry IC1 Riposte,Martini-Henry IC1 Riposte,164,weapon_martini_henry_ic1,3,2
-weapon_mosin_nagant_m1891,Mosin-Nagant M1891,Mosin-Nagant M1891,490,weapon_mosin_nagant_m1891,3,1
-weapon_mosin_nagant_m1891_avtomat,Mosin-Nagant M1891 Avtomat,Mosin-Nagant M1891 Avtomat,1250,weapon_mosin_nagant_m1891,3,1
-weapon_mosin_nagant_m1891_bayonet,Mosin-Nagant M1891 Bayonet,Mosin-Nagant M1891 Bayonet,540,weapon_mosin_nagant_m1891,3,1
-weapon_mosin_nagant_m1891_obrez,Mosin-Nagant M1891 Obrez,Mosin-Nagant M1891 Obrez,290,weapon_mosin_nagant_m1891,2,1
-weapon_mosin_nagant_m1891_obrez_drum,Mosin-Nagant M1891 Obrez Drum,Mosin-Nagant M1891 Obrez Drum,350,weapon_mosin_nagant_m1891,2,1
-weapon_mosin_nagant_m1891_obrez_mace,Mosin-Nagant M1891 Obrez Mace,Mosin-Nagant M1891 Obrez Mace,310,weapon_mosin_nagant_m1891,2,1
-weapon_mosin_nagant_m1891_sniper,Mosin-Nagant M1891 Sniper,Mosin-Nagant M1891 Sniper,550,weapon_mosin_nagant_m1891,3,1
-weapon_nagant_m1895,Nagant M1895,Nagant M1895,24,weapon_nagant_m1895,1,1
-weapon_nagant_m1895_deadeye,Nagant M1895 Deadeye,Nagant M1895 Deadeye,42,weapon_nagant_m1895,1,1
-weapon_nagant_m1895_officer,Nagant M1895 Officer,Nagant M1895 Officer,66,weapon_nagant_m1895_officer,1,1
-weapon_nagant_m1895_officer_brawler,Nagant M1895 Officer Brawler,Nagant M1895 Officer Brawler,80,weapon_nagant_m1895_officer,1,1
-weapon_nagant_m1895_officer_carbine,Nagant M1895 Officer Carbine,Nagant M1895 Officer Carbine,155,weapon_nagant_m1895_officer_carbine,3,1
-weapon_nagant_m1895_officer_carbine_deadeye,Nagant M1895 Officer Carbine Deadeye,Nagant M1895 Officer Carbine Deadeye,211,weapon_nagant_m1895_officer_carbine,3,1
-weapon_nagant_m1895_precision,Nagant M1895 Precision,Nagant M1895 Precision,29,weapon_nagant_m1895,2,1
-weapon_nagant_m1895_silencer,Nagant M1895 Silencer,Nagant M1895 Silencer,53,weapon_nagant_m1895,1,1
-weapon_nitro_express_rifle,Nitro Express Rifle,Nitro Express Rifle,1015,weapon_nitro_express_rifle,3,1
-weapon_romero_77,Romero 77,Romero 77,34,weapon_romero_77,3,2
-weapon_romero_77_handcannon,Romero 77 Handcannon,Romero 77 Handcannon,26,weapon_romero_77,2,2
-weapon_romero_77_hatchet,Romero 77 Hatchet,Romero 77 Hatchet,62,weapon_romero_77,2,2
-weapon_romero_77_talon,Romero 77 Talon,Romero 77 Talon,59,weapon_romero_77,3,2
-weapon_sparks_lrr,Sparks LRR,Sparks LRR,130,weapon_sparks_lrr,3,2
-weapon_sparks_lrr_silencer,Sparks LRR Silencer,Sparks LRR Silencer,150,weapon_sparks_lrr,3,2
-weapon_sparks_lrr_sniper,Sparks LRR Sniper,Sparks LRR Sniper,199,weapon_sparks_lrr,3,2
-weapon_specter_1882,Specter 1882,Specter 1882,188,weapon_specter_1882,3,1
-weapon_specter_1882_bayonet,Specter 1882 Bayonet,Specter 1882 Bayonet,223,weapon_specter_1882,3,1
-weapon_specter_1882_compact,Specter 1882 Compact,Specter 1882 Compact,164,weapon_specter_1882,2,1
-weapon_springfield_1866,Springfield 1866,Springfield 1866,38,weapon_springfield_1866,3,2
-weapon_springfield_1866_compact,Springfield 1866 Compact,Springfield 1866 Compact,33,weapon_springfield_1866,2,2
-weapon_springfield_1866_compact_deadeye,Springfield 1866 Compact Deadeye,Springfield 1866 Compact Deadeye,46,weapon_springfield_1866,2,2
-weapon_springfield_1866_compact_striker,Springfield 1866 Compact Striker,Springfield 1866 Compact Striker,56,weapon_springfield_1866,2,2
-weapon_springfield_1866_marksman,Springfield 1866 Marksman,Springfield 1866 Marksman,73,weapon_springfield_1866,3,2
-weapon_vetterli_71_karabiner,Vetterli 71 Karabiner,Vetterli 71 Karabiner,105,weapon_vetterli_71_karabiner,3,1
-weapon_vetterli_71_karabiner_bayonet,Vetterli 71 Karabiner Bayonet,Vetterli 71 Karabiner Bayonet,155,weapon_vetterli_71_karabiner,3,1
-weapon_vetterli_71_karabiner_deadeye,Vetterli 71 Karabiner Deadeye,Vetterli 71 Karabiner Deadeye,130,weapon_vetterli_71_karabiner,3,1
-weapon_winfield_1887_terminus,Winfield 1887 Terminus,Winfield 1887 Terminus,309,weapon_winfield_1887_terminus,3,1
-weapon_winfield_1887_terminus_handcannon,Winfield 1887 Terminus Handcannon,Winfield 1887 Terminus Handcannon,289,weapon_winfield_1887_terminus,2,1
-weapon_winfield_m1873,Winfield M1873,Winfield M1873,75,weapon_winfield_m1873,3,1
-weapon_winfield_m1873_aperture,Winfield M1873 Aperture,Winfield M1873 Aperture,80,weapon_winfield_m1873,3,1
-weapon_winfield_m1873_musket_bayonet,Winfield M1873 Musket Bayonet,Winfield M1873 Musket Bayonet,137,weapon_winfield_m1873,3,1
-weapon_winfield_m1873_swift,Winfield M1873 Swift,Winfield M1873 Swift,128,weapon_winfield_m1873,3,1
-weapon_winfield_m1873_talon,Winfield M1873 Talon,Winfield M1873 Talon,100,weapon_winfield_m1873,3,1
-weapon_winfield_m1873c,Winfield M1873C,Winfield M1873C,41,weapon_winfield_m1873c,3,1
-weapon_winfield_m1873c_marksman,Winfield M1873C Marksman,Winfield M1873C Marksman,56,weapon_winfield_m1873c,3,1
-weapon_winfield_m1873c_silencer,Winfield M1873C Silencer,Winfield M1873C Silencer,55,weapon_winfield_m1873c,3,1
-weapon_winfield_m1873c_vandal,Winfield M1873C Vandal,Winfield M1873C Vandal,35,weapon_winfield_m1873c,2,1
-weapon_winfield_m1873c_vandal_deadeye,Winfield M1873C Vandal Deadeye,Winfield M1873C Vandal Deadeye,45,weapon_winfield_m1873c,2,1
-weapon_winfield_m1873c_vandal_striker,Winfield M1873C Vandal Striker,Winfield M1873C Vandal Striker,39,weapon_winfield_m1873c,2,1
-weapon_winfield_m1876_centennial,Winfield M1876 Centennial,Winfield M1876 Centennial,277,weapon_winfield_m1876_centennial,3,1
-weapon_winfield_m1876_centennial_sniper,Winfield M1876 Centennial Sniper,Winfield M1876 Centennial Sniper,277,weapon_winfield_m1876_centennial,3,1
+weapon_martini_henry_ic1,Martini-Henry IC1,Martini,122,weapon_martini_henry_ic1,3,2
+weapon_martini_henry_ic1_deadeye,Martini-Henry IC1 Deadeye,Martini Deadeye,145,weapon_martini_henry_ic1,3,2
+weapon_martini_henry_ic1_marksman,Martini-Henry IC1 Marksman,Martini Marksman,173,weapon_martini_henry_ic1,3,2
+weapon_martini_henry_ic1_riposte,Martini-Henry IC1 Riposte,Martini Riposte,164,weapon_martini_henry_ic1,3,2
+weapon_mosin_nagant_m1891,Mosin-Nagant M1891,Mosin,490,weapon_mosin_nagant_m1891,3,1
+weapon_mosin_nagant_m1891_avtomat,Mosin-Nagant M1891 Avtomat,Avtomat,1250,weapon_mosin_nagant_m1891,3,1
+weapon_mosin_nagant_m1891_bayonet,Mosin-Nagant M1891 Bayonet,Bayonet,540,weapon_mosin_nagant_m1891,3,1
+weapon_mosin_nagant_m1891_obrez,Mosin-Nagant M1891 Obrez,Obrez,290,weapon_mosin_nagant_m1891,2,1
+weapon_mosin_nagant_m1891_obrez_drum,Mosin-Nagant M1891 Obrez Drum,Obrez Drum,350,weapon_mosin_nagant_m1891,2,1
+weapon_mosin_nagant_m1891_obrez_mace,Mosin-Nagant M1891 Obrez Mace,Obrez Mace,310,weapon_mosin_nagant_m1891,2,1
+weapon_mosin_nagant_m1891_sniper,Mosin-Nagant M1891 Sniper,Sniper,550,weapon_mosin_nagant_m1891,3,1
+weapon_nagant_m1895,Nagant M1895,Nagant,24,weapon_nagant_m1895,1,1
+weapon_nagant_m1895_deadeye,Nagant M1895 Deadeye,Nagant Deadeye,42,weapon_nagant_m1895,1,1
+weapon_nagant_m1895_officer,Nagant M1895 Officer,Officer,96,weapon_nagant_m1895_officer,1,1
+weapon_nagant_m1895_officer_brawler,Nagant M1895 Officer Brawler,Officer Brawler,110,weapon_nagant_m1895_officer,1,1
+weapon_nagant_m1895_officer_carbine,Nagant M1895 Officer Carbine,Officer Carbine,155,weapon_nagant_m1895_officer,3,1
+weapon_nagant_m1895_officer_carbine_deadeye,Nagant M1895 Officer Carbine Deadeye,Officer Carbine Deadeye,211,weapon_nagant_m1895_officer,3,1
+weapon_nagant_m1895_precision,Nagant M1895 Precision,Nagant Precision,29,weapon_nagant_m1895,2,1
+weapon_nagant_m1895_silencer,Nagant M1895 Silencer,Nagant Silencer,53,weapon_nagant_m1895,1,1
+weapon_nitro_express_rifle,Nitro Express Rifle,Nitro,1015,weapon_nitro_express_rifle,3,1
+weapon_romero_77,Romero 77,Romero,34,weapon_romero_77,3,2
+weapon_romero_77_alamo,Romero 77 Alamo,Romero Alamo,98,weapon_romero_77,3,1
+weapon_romero_77_handcannon,Romero 77 Handcannon,Romero Handcannon,26,weapon_romero_77,2,2
+weapon_romero_77_hatchet,Romero 77 Hatchet,Romero Hatchet,62,weapon_romero_77,2,2
+weapon_romero_77_talon,Romero 77 Talon,Romero Talon,59,weapon_romero_77,3,2
+weapon_scottfield_model_3,Scottfield Model 3,Scottfield,77,weapon_scottfield_model_3,1,1
+weapon_scottfield_model_3_brawler,Scottfield Model 3 Brawler,Scottfield Brawler,92,weapon_scottfield_model_3,1,1
+weapon_scottfield_model_3_precision,Scottfield Model 3 Precision,Scottfield Precision,85,weapon_scottfield_model_3,1,1
+weapon_scottfield_model_3_spitfire,Scottfield Model 3 Spitfire,Scottfield Spitfire,108,weapon_scottfield_model_3,1,1
+weapon_scottfield_model_3_swift,Scottfield Model 3 Swift,Scottfield Swift,95,weapon_scottfield_model_3,1,1
+weapon_sparks_lrr,Sparks LRR,Sparks,130,weapon_sparks_lrr,3,2
+weapon_sparks_pistol,Sparks Pistol,Sparks Pistol,155,weapon_sparks_lrr,1,2
+weapon_sparks_lrr_silencer,Sparks LRR Silencer,Sparks Silencer,150,weapon_sparks_lrr,3,2
+weapon_sparks_lrr_sniper,Sparks LRR Sniper,Sparks Sniper,199,weapon_sparks_lrr,3,2
+weapon_specter_1882,Specter 1882,Specter,188,weapon_specter_1882,3,1
+weapon_specter_1882_bayonet,Specter 1882 Bayonet,Specter Bayonet,223,weapon_specter_1882,3,1
+weapon_specter_1882_compact,Specter 1882 Compact,Specter Compact,164,weapon_specter_1882,2,1
+weapon_springfield_1866,Springfield 1866,Springfield,38,weapon_springfield_1866,3,2
+weapon_springfield_1866_compact,Springfield 1866 Compact,Springfield Compact,33,weapon_springfield_1866,2,2
+weapon_springfield_1866_compact_deadeye,Springfield 1866 Compact Deadeye,Springfield Compact Deadeye,46,weapon_springfield_1866,2,2
+weapon_springfield_1866_compact_striker,Springfield 1866 Compact Striker,Springfield Compact Striker,56,weapon_springfield_1866,2,2
+weapon_springfield_1866_marksman,Springfield 1866 Marksman,Springfield Marksman,73,weapon_springfield_1866,3,2
+weapon_vetterli_71_karabiner,Vetterli 71 Karabiner,Vetterli,105,weapon_vetterli_71_karabiner,3,1
+weapon_vetterli_71_karabiner_bayonet,Vetterli 71 Karabiner Bayonet,Vetterli Bayonet,155,weapon_vetterli_71_karabiner,3,1
+weapon_vetterli_71_karabiner_deadeye,Vetterli 71 Karabiner Deadeye,Vetterli Deadeye,130,weapon_vetterli_71_karabiner,3,1
+weapon_vetterli_71_karabiner_marksman,Vetterli 71 Karabiner Marksman,Vetterli Marksman,190,weapon_vetterli_71_karabiner,3,1
+weapon_vetterli_71_karabiner_silencer,Vetterli 71 Karabiner Silencer,Vetterli Silencer,150,weapon_vetterli_71_karabiner,3,1
+weapon_winfield_1887_terminus,Winfield 1887 Terminus,Terminus,309,weapon_winfield_1887_terminus,3,1
+weapon_winfield_1887_terminus_handcannon,Winfield 1887 Terminus Handcannon,Terminus Handcannon,289,weapon_winfield_1887_terminus,2,1
+weapon_winfield_1893_slate,Winfield 1893 Slate,Slate,250,weapon_winfield_1893_slate,3,1
+weapon_winfield_m1873,Winfield M1873,Winfield,75,weapon_winfield_m1873,3,1
+weapon_winfield_m1873_aperture,Winfield M1873 Aperture,Winfield Aperture,80,weapon_winfield_m1873,3,1
+weapon_winfield_m1873_musket_bayonet,Winfield M1873 Musket Bayonet,Winfield Musket Bayonet,137,weapon_winfield_m1873,3,1
+weapon_winfield_m1873_swift,Winfield M1873 Swift,Winfield Swift,128,weapon_winfield_m1873,3,1
+weapon_winfield_m1873_talon,Winfield M1873 Talon,Winfield Talon,100,weapon_winfield_m1873,3,1
+weapon_winfield_m1873c,Winfield M1873C,Winfield C,41,weapon_winfield_m1873c,3,1
+weapon_winfield_m1873c_marksman,Winfield M1873C Marksman,Winfield C Marksman,56,weapon_winfield_m1873c,3,1
+weapon_winfield_m1873c_silencer,Winfield M1873C Silencer,Winfield C Silencer,55,weapon_winfield_m1873c,3,1
+weapon_winfield_m1873c_vandal,Winfield M1873C Vandal,Winfield C Vandal,35,weapon_winfield_m1873c,2,1
+weapon_winfield_m1873c_vandal_deadeye,Winfield M1873C Vandal Deadeye,Winfield C Vandal Deadeye,45,weapon_winfield_m1873c,2,1
+weapon_winfield_m1873c_vandal_striker,Winfield M1873C Vandal Striker,Winfield C Vandal Striker,39,weapon_winfield_m1873c,2,1
+weapon_winfield_m1876_centennial,Winfield M1876 Centennial,Centennial,157,weapon_winfield_m1876_centennial,3,1
+weapon_winfield_m1876_centennial_sniper,Winfield M1876 Centennial Sniper,Centennial Sniper,229,weapon_winfield_m1876_centennial,3,1
