@@ -11,8 +11,10 @@
     />
 <% end %>
 
-<.live_component 
-    module={HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots}
-    id={"equipment_slot"}
-    state={@slots}
-/>
+<%= if @selecting.category == :not_selecting do %>
+    <.live_component 
+        module={HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots}
+        id={"equipment_slot"}
+        state={@slots}
+    />
+<% end %>
