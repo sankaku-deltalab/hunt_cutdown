@@ -20,7 +20,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
     ~H"""
     <div>
       <section class="text-3xl font-bold m-3">
-        <h2>Total Cost: $<%= EquipmentSlots.cost(@state) %></h2>
+        <h2>Total Cost: <u>$<%= EquipmentSlots.cost(@state) %></u></h2>
       </section>
       <section>
         <h2 class="text-1xl m-1">Weapons</h2>
@@ -31,7 +31,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
               phx-value-pos={w_pos}
               class="card card-bordered card-compact shadow-xl"
             >
-              <div class="card-title"><.equipment_present eq={EquipmentSlots.get_weapon(@state, w_pos)} /></div>
+              <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_weapon(@state, w_pos)} /></div>
             </div>
             <div class="ml-2">
               <%= for am_pos <- 1..2 do %>
@@ -44,7 +44,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
                     phx-value-ammo_pos={am_pos}
                     class={"card card-bordered card-compact shadow-xl"}
                   >
-                    <div class="card-title"><.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} /></div>
+                    <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} /></div>
                   </div>
                 <% end %>
               <% end %>
@@ -57,12 +57,11 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
         <h2 class="text-1xl m-1">Tools</h2>
         <%= for tool_pos <- 1..4 do %>
           <div
-            style="margin-left: 2vw"
             phx-click={"start_select_tool"}
             phx-value-pos={tool_pos}
-            class="card card-bordered card-compact shadow-xl"
+            class="card card-bordered card-compact shadow-xl ml-2"
           >
-          <div class="card-title"><.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} /></div>
+            <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} /></div>
           </div>
         <% end %>
       </section>
@@ -71,12 +70,11 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
         <h2 class="text-1xl m-1">Consumables</h2>
         <%= for consumable_pos <- 1..4 do %>
           <div
-            style="margin-left: 2vw"
             phx-click={"start_select_consumable"}
             phx-value-pos={consumable_pos}
-            class="card card-bordered card-compact shadow-xl"
+            class="card card-bordered card-compact shadow-xl ml-2"
           >
-            <div class="card-title"><.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} /></div>
+            <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} /></div>
           </div>
         <% end %>
       </div>
