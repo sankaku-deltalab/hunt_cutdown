@@ -33,12 +33,12 @@ weapon_martini_henry_ic1_deadeye,Martini-Henry IC1 Deadeye,Martini Deadeye,145,w
 weapon_martini_henry_ic1_marksman,Martini-Henry IC1 Marksman,Martini Marksman,173,weapon_martini_henry_ic1,3,2
 weapon_martini_henry_ic1_riposte,Martini-Henry IC1 Riposte,Martini Riposte,164,weapon_martini_henry_ic1,3,2
 weapon_mosin_nagant_m1891,Mosin-Nagant M1891,Mosin,490,weapon_mosin_nagant_m1891,3,1
-weapon_mosin_nagant_m1891_avtomat,Mosin-Nagant M1891 Avtomat,Avtomat,1250,weapon_mosin_nagant_m1891,3,1
-weapon_mosin_nagant_m1891_bayonet,Mosin-Nagant M1891 Bayonet,Bayonet,540,weapon_mosin_nagant_m1891,3,1
-weapon_mosin_nagant_m1891_obrez,Mosin-Nagant M1891 Obrez,Obrez,290,weapon_mosin_nagant_m1891,2,1
-weapon_mosin_nagant_m1891_obrez_drum,Mosin-Nagant M1891 Obrez Drum,Obrez Drum,350,weapon_mosin_nagant_m1891,2,1
-weapon_mosin_nagant_m1891_obrez_mace,Mosin-Nagant M1891 Obrez Mace,Obrez Mace,310,weapon_mosin_nagant_m1891,2,1
-weapon_mosin_nagant_m1891_sniper,Mosin-Nagant M1891 Sniper,Sniper,550,weapon_mosin_nagant_m1891,3,1
+weapon_mosin_nagant_m1891_avtomat,Mosin-Nagant M1891 Avtomat,Mosin Avtomat,1250,weapon_mosin_nagant_m1891,3,1
+weapon_mosin_nagant_m1891_bayonet,Mosin-Nagant M1891 Bayonet,Mosin Bayonet,540,weapon_mosin_nagant_m1891,3,1
+weapon_mosin_nagant_m1891_obrez,Mosin-Nagant M1891 Obrez,Mosin Obrez,290,weapon_mosin_nagant_m1891,2,1
+weapon_mosin_nagant_m1891_obrez_drum,Mosin-Nagant M1891 Obrez Drum,Mosin Obrez Drum,350,weapon_mosin_nagant_m1891,2,1
+weapon_mosin_nagant_m1891_obrez_mace,Mosin-Nagant M1891 Obrez Mace,Mosin Obrez Mace,310,weapon_mosin_nagant_m1891,2,1
+weapon_mosin_nagant_m1891_sniper,Mosin-Nagant M1891 Sniper,Mosin Sniper,550,weapon_mosin_nagant_m1891,3,1
 weapon_nagant_m1895,Nagant M1895,Nagant,24,weapon_nagant_m1895,1,1
 weapon_nagant_m1895_deadeye,Nagant M1895 Deadeye,Nagant Deadeye,42,weapon_nagant_m1895,1,1
 weapon_nagant_m1895_officer,Nagant M1895 Officer,Officer,96,weapon_nagant_m1895_officer,1,1
