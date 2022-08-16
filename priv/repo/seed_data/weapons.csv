@@ -18,15 +18,15 @@ weapon_cavalry_saber,Cavalry Saber,Saber,60,weapon_cavalry_saber,1,0
 weapon_combat_axe,Combat Axe,Axe,5,weapon_combat_axe,2,0
 weapon_crossbow,Crossbow,Crossbow,50,weapon_crossbow,3,2
 weapon_crown_and_king_auto_5,Crown & King Auto-5,Auto-5,600,weapon_crown_and_king_auto_5,3,1
-weapon_dolch_96,Dolch 96,Dolch,750,weapon_dolch_96,1,1
-weapon_dolch_96_precision,Dolch 96 Precision,Dolch Precision,790,weapon_dolch_96,2,1
+weapon_dolch_96,Dolch 96,Dolch,750,weapon_dolch_96,1,0
+weapon_dolch_96_precision,Dolch 96 Precision,Dolch Precision,790,weapon_dolch_96,2,0
 weapon_hand_crossbow,Hand Crossbow,Hand Crossbow,30,weapon_hand_crossbow,1,2
 weapon_hunting_bow,Hunting Bow,Hunting Bow,57,weapon_hunting_bow,2,2
 weapon_lebel_1886,Lebel 1886,Lebel,397,weapon_lebel_1886,3,1
 weapon_lebel_1886_aperture,Lebel 1886 Aperture,Lebel Aperture,425,weapon_lebel_1886,3,1
 weapon_lebel_1886_marksman,Lebel 1886 Marksman,Lebel Marksman,437,weapon_lebel_1886,3,1
 weapon_lebel_1886_talon,Lebel 1886 Talon,Lebel Talon,422,weapon_lebel_1886,3,1
-weapon_lemat_mark_ii_revolver,LeMat Mark II Revolver,LeMat,95,weapon_lemat_mark_ii_revolver,1,0
+weapon_lemat_mark_ii_revolver,LeMat Mark II Revolver,LeMat,95,weapon_lemat_mark_ii_revolver,1,2
 weapon_machete,Machete,Machete,18,weapon_machete,1,0
 weapon_martini_henry_ic1,Martini-Henry IC1,Martini,122,weapon_martini_henry_ic1,3,2
 weapon_martini_henry_ic1_deadeye,Martini-Henry IC1 Deadeye,Martini Deadeye,145,weapon_martini_henry_ic1,3,2
