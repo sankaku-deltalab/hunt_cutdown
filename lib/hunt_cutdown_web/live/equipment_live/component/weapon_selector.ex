@@ -45,31 +45,38 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
       ) do
     ~H"""
     <div>
-      <div> Equipment slot </div>
-      <div
+      <label
         phx-click={"abort_select"}
+        class="btn btn-sm btn-circle absolute right-2 top-2"
       >
-        [Close]
-      </div>
+        ✕
+      </label>
       <%= for weapon_sets <- WeaponSet.create_sets(slots, pos, weapons, categories) do %>
         <div
-          style="margin-left: 2vw"
+          class="card card-compact shadow-xl"
         >
-          <div><%= weapon_sets.category.short_name %></div>
-          <%= for {equipable, w} <- weapon_sets.weapons do %>
-            <%= if not equipable do %>
-              <div style="margin-left: 2vw"><s><%= "#{w.short_name} ($#{w.cost})" %></s></div>
-            <% else %>
-              <div
-                style="margin-left: 2vw"
-                phx-click={"put_weapon"}
-                phx-value-pos={@pos}
-                phx-value-weapon={w.id}
-              >
-                <%= "#{w.short_name} ($#{w.cost})" %>
-              </div>
+
+          <div class="card-title"><%= weapon_sets.category.full_name %></div>
+          <div class="card-body">
+            <%= for {equipable, w} <- weapon_sets.weapons do %>
+              <%= if not equipable do %>
+                <span
+                  class="badge badge-ghost"
+                >
+                  <s><%= "#{w.short_name} ($#{w.cost})" %></s>
+                </span>
+              <% else %>
+                <span
+                  phx-click={"put_weapon"}
+                  phx-value-pos={@pos}
+                  phx-value-weapon={w.id}
+                  class="badge"
+                >
+                  <%= "#{w.short_name} ($#{w.cost})" %>
+                </span>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
 
       <% end %>
