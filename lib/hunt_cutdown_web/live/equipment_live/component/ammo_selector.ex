@@ -47,32 +47,34 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
       ) do
     ~H"""
     <div>
-      <div> Equipment slot </div>
-      <div
+      <label
         phx-click={"abort_select"}
+        class="btn btn-sm btn-circle absolute right-2 top-2"
       >
-        [Close]
-      </div>
+        ✕
+      </label>
       <%= for ammo_set <- [AmmoSet.create_set(slots, weapon_pos, ammo_pos, ammos, categories)] do %>
         <div
-          style="margin-left: 2vw"
+          class="card card-compact shadow-xl"
         >
-          <div><%= ammo_set.category.short_name %></div>
-          <%= for {equipable, am} <- ammo_set.ammos do %>
-            <%= if not equipable do %>
-              <div style="margin-left: 2vw"><s><%= "#{am.short_name} ($#{am.cost})" %></s></div>
-            <% else %>
-              <div
-                style="margin-left: 2vw"
-                phx-click={"put_ammo"}
-                phx-value-weapon_pos={weapon_pos}
-                phx-value-ammo_pos={ammo_pos}
-                phx-value-ammo={am.id}
-              >
-                <%= "#{am.short_name} ($#{am.cost})" %>
-              </div>
+          <div class="card-title"><%= "Ammo: #{ammo_set.category.full_name}" %></div>
+          <div class="card-body">
+            <%= for {equipable, am} <- ammo_set.ammos do %>
+              <%= if not equipable do %>
+                <div style="margin-left: 2vw"><s><%= "#{am.short_name} ($#{am.cost})" %></s></div>
+              <% else %>
+                <div
+                  phx-click={"put_ammo"}
+                  phx-value-weapon_pos={weapon_pos}
+                  phx-value-ammo_pos={ammo_pos}
+                  phx-value-ammo={am.id}
+                  class="badge"
+                >
+                  <%= "#{am.short_name} ($#{am.cost})" %>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
 
       <% end %>
