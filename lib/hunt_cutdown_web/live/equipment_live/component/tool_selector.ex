@@ -45,31 +45,37 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ToolSelector do
       ) do
     ~H"""
     <div>
-      <div> Equipment slot </div>
-      <div
+      <label
         phx-click={"abort_select"}
+        class="btn btn-sm btn-circle absolute right-2 top-2"
       >
-        [Close]
-      </div>
+        ✕
+      </label>
       <%= for tool_sets <- ToolSet.create_sets(slots, pos, tools, categories) do %>
         <div
-          style="margin-left: 2vw"
+          class="card card-compact shadow-xl"
         >
-          <div><%= tool_sets.category.short_name %></div>
-          <%= for {equipable, t} <- tool_sets.tools do %>
-            <%= if not equipable do %>
-              <div style="margin-left: 2vw"><s><%= "#{t.short_name} ($#{t.cost})" %></s></div>
-            <% else %>
-              <div
-                style="margin-left: 2vw"
-                phx-click={"put_tool"}
-                phx-value-pos={@pos}
-                phx-value-tool={t.id}
-              >
-                <%= "#{t.short_name} ($#{t.cost})" %>
-              </div>
+          <div class="card-title"><%= tool_sets.category.full_name %></div>
+          <div class="card-body">
+            <%= for {equipable, t} <- tool_sets.tools do %>
+              <%= if not equipable do %>
+                <span
+                  class="badge badge-ghost"
+                >
+                  <s><%= "#{t.short_name} ($#{t.cost})" %></s>
+                </span>
+              <% else %>
+                <div
+                  phx-click={"put_tool"}
+                  phx-value-pos={@pos}
+                  phx-value-tool={t.id}
+                  class="badge"
+                >
+                  <%= "#{t.short_name} ($#{t.cost})" %>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
 
       <% end %>
