@@ -45,31 +45,33 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector do
       ) do
     ~H"""
     <div>
-      <div> Equipment slot </div>
-      <div
+      <label
         phx-click={"abort_select"}
+        class="btn btn-sm btn-circle absolute right-2 top-2"
       >
-        [Close]
-      </div>
+        ✕
+      </label>
       <%= for consumable_sets <- ConsumableSet.create_sets(slots, pos, consumables, categories) do %>
         <div
-          style="margin-left: 2vw"
+          class="card card-compact shadow-xl"
         >
-          <div><%= consumable_sets.category.short_name %></div>
-          <%= for {equipable, c} <- consumable_sets.consumables do %>
-            <%= if not equipable do %>
-              <div style="margin-left: 2vw"><s><%= "#{c.short_name} ($#{c.cost})" %></s></div>
-            <% else %>
-              <div
-                style="margin-left: 2vw"
-                phx-click={"put_consumable"}
-                phx-value-pos={@pos}
-                phx-value-consumable={c.id}
-              >
-                <%= "#{c.short_name} ($#{c.cost})" %>
-              </div>
+          <div class="card-title"><%= consumable_sets.category.short_name %></div>
+          <div class="card-body">
+            <%= for {equipable, c} <- consumable_sets.consumables do %>
+              <%= if not equipable do %>
+                <div style="margin-left: 2vw"><s><%= "#{c.short_name} ($#{c.cost})" %></s></div>
+              <% else %>
+                <div
+                  phx-click={"put_consumable"}
+                  phx-value-pos={@pos}
+                  phx-value-consumable={c.id}
+                  class="badge"
+                >
+                  <%= "#{c.short_name} ($#{c.cost})" %>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
 
       <% end %>
