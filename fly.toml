@@ -1,4 +1,4 @@
-# fly.toml file generated for hunt-cutdown on 2022-08-17T23:46:39+09:00
+# fly.toml file generated for hunt-cutdown on 2022-08-18T00:50:17+09:00
 
 app = "hunt-cutdown"
 kill_signal = "SIGTERM"
@@ -9,7 +9,7 @@ processes = []
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "hunt-cutdown.fly.dev"
+  PHX_HOST = "hunt-cutdown.fly"
   PORT = "8080"
 
 [experimental]

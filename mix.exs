@@ -64,11 +64,17 @@ defmodule HuntCutdown.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", ~S{run -e 'System.cmd("npm", ["install"], cd: "./assets")' }],
+      npm_install: [~S{run -e 'System.cmd("npm", ["install"], cd: "./assets")' }],
+      setup: ["deps.get", "ecto.setup", "npm_install"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test_ci: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      "assets.deploy": [
+        "npm_install",
+        "tailwind default --minify",
+        "esbuild default --minify",
+        "phx.digest"
+      ]
     ]
   end
 end
