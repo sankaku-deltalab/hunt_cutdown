@@ -74,3 +74,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :hunt_cutdown, HuntCutdown.SeedModule.Setup, seed_data_root: "priv/repo/seed_data"

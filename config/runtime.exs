@@ -80,4 +80,7 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  config :hunt_cutdown, HuntCutdown.SeedModule.Setup,
+    seed_data_root: "/app/lib/hunt_cutdown-#{HuntCutdown.version()}/priv/repo/seed_data"
 end

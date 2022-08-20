@@ -14,7 +14,7 @@ defmodule HuntCutdown.SeedModule.Setup do
   end
 
   defp assign_from_tables() do
-    path_base = "lib/hunt_cutdown/seed_module/seed_data"
+    path_base = seed_data_root()
 
     data_pairs = [
       {%WeaponCategory{}, "weapon_categories.csv"},
@@ -68,5 +68,12 @@ defmodule HuntCutdown.SeedModule.Setup do
 
   defp get_null_objects(_module) do
     []
+  end
+
+  defp seed_data_root() do
+    [seed_data_root: seed_data_root] =
+      Application.fetch_env!(:hunt_cutdown, HuntCutdown.SeedModule.Setup)
+
+    seed_data_root
   end
 end
