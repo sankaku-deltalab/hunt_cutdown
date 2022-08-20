@@ -13,12 +13,7 @@ config :hunt_cutdown, HuntCutdownWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Configure your database
-config :hunt_cutdown, HuntCutdown.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "hunt_cutdown_db",
-  port: "5432"
+config :hunt_cutdown, HuntCutdown.Repo, database: "postgres"
 
 # Do not print debug messages in production
 config :logger, level: :info
