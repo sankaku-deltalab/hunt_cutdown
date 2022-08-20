@@ -14,7 +14,7 @@ defmodule HuntCutdown.SeedModule.Setup do
   end
 
   defp assign_from_tables() do
-    path_base = "priv/repo/seed_data"
+    path_base = "lib/hunt_cutdown/seed_module/seed_data"
 
     data_pairs = [
       {%WeaponCategory{}, "weapon_categories.csv"},
