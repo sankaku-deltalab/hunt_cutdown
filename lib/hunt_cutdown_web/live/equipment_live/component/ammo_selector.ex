@@ -4,6 +4,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
 
   alias Phoenix.LiveView.Socket
   alias HuntCutdown.Equipment
+  alias HuntCutdownWeb.EquipmentLive.Components
 
   defmodule AmmoSet do
     defstruct category: Equipment.WeaponCategory.null_object(),
@@ -57,22 +58,23 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
         <div
           class="card card-compact shadow-xl"
         >
-          <div class="card-title"><%= "Ammo: #{ammo_set.category.full_name}" %></div>
+          <div class="card-title ml-2"><%= "Ammo: #{ammo_set.category.full_name}" %></div>
           <div class="card-body">
             <%= for {equipable, am} <- ammo_set.ammos do %>
-              <%= if not equipable do %>
-                <div style="margin-left: 2vw"><s><%= "#{am.short_name} ($#{am.cost})" %></s></div>
-              <% else %>
-                <div
-                  phx-click={"put_ammo"}
-                  phx-value-weapon_pos={weapon_pos}
-                  phx-value-ammo_pos={ammo_pos}
-                  phx-value-ammo={am.id}
-                  class="badge"
+              <div
+                phx-click={if equipable do "put_ammo" end}
+                phx-value-weapon_pos={weapon_pos}
+                phx-value-ammo_pos={ammo_pos}
+                phx-value-ammo={am.id}
+              >
+                <.live_component
+                  module={Components.SelectorButton}
+                  id={"selector_button-#{am.id}"}
+                  enabled={equipable}
                 >
-                  <%= "#{am.short_name} ($#{am.cost})" %>
-                </div>
-              <% end %>
+                <%= "#{am.short_name} ($#{am.cost})" %>
+                </.live_component>
+              </div>
             <% end %>
           </div>
         </div>
