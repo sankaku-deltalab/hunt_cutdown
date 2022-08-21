@@ -4,6 +4,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
 
   alias Phoenix.LiveView.Socket
   alias HuntCutdown.Equipment
+  alias HuntCutdownWeb.EquipmentLive.{Index, Components}
 
   defmodule WeaponSet do
     defstruct category: Equipment.WeaponCategory.null_object(),
@@ -51,35 +52,34 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
       >
         ✕
       </label>
-      <%= for weapon_sets <- WeaponSet.create_sets(slots, pos, weapons, categories) do %>
-        <div
-          class="card card-compact shadow-xl"
-        >
+      <div class="columns-3">
+        <%= for weapon_sets <- WeaponSet.create_sets(slots, pos, weapons, categories) do %>
+          <div
+            class="card card-compact shadow-xl card-bordered"
+          >
 
-          <div class="card-title"><%= weapon_sets.category.full_name %></div>
-          <div class="card-body">
-            <%= for {equipable, w} <- weapon_sets.weapons do %>
-              <%= if not equipable do %>
-                <span
-                  class="badge badge-ghost"
-                >
-                  <s><%= "#{w.short_name} ($#{w.cost})" %></s>
-                </span>
-              <% else %>
-                <span
-                  phx-click={"put_weapon"}
+            <div class="card-title ml-2"><%= weapon_sets.category.full_name %></div>
+            <div class="card-body">
+              <%= for {equipable, w} <- weapon_sets.weapons do %>
+                <div
+                  phx-click={if equipable do "put_weapon" end}
                   phx-value-pos={@pos}
                   phx-value-weapon={w.id}
-                  class="badge"
                 >
-                  <%= "#{w.short_name} ($#{w.cost})" %>
-                </span>
+                  <.live_component
+                    module={Components.SelectorButton}
+                    id={"selector_button-#{w.id}"}
+                    enabled={equipable}
+                  >
+                    <%= "#{w.short_name} ($#{w.cost})" %>
+                  </.live_component>
+                </div>
               <% end %>
-            <% end %>
+            </div>
           </div>
-        </div>
 
-      <% end %>
+        <% end %>
+      </div>
     </div>
     """
   end
