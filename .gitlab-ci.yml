@@ -17,8 +17,16 @@ before_script:
   - mix deps.get
   - mix ecto.create
   - mix ecto.migrate
+  - apt-get update -qq && apt-get install -y curl
+  - curl -L https://fly.io/install.sh | sh
 
 mix:
   script:
     - mix test_ci
     - mix dialyzer
+
+deploy:
+  script:
+    - flyctl deploy
+  only:
+    - main
