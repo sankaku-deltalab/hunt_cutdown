@@ -4,6 +4,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector do
 
   alias Phoenix.LiveView.Socket
   alias HuntCutdown.Equipment
+  alias HuntCutdownWeb.EquipmentLive.Components
 
   defmodule ConsumableSet do
     defstruct category: Equipment.ConsumableCategory.null_object(),
@@ -58,18 +59,19 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector do
           <div class="card-title"><%= consumable_sets.category.short_name %></div>
           <div class="card-body">
             <%= for {equipable, c} <- consumable_sets.consumables do %>
-              <%= if not equipable do %>
-                <div style="margin-left: 2vw"><s><%= "#{c.short_name} ($#{c.cost})" %></s></div>
-              <% else %>
-                <div
-                  phx-click={"put_consumable"}
-                  phx-value-pos={@pos}
-                  phx-value-consumable={c.id}
-                  class="badge"
+              <div
+                phx-click={if equipable do "put_consumable" end}
+                phx-value-pos={@pos}
+                phx-value-consumable={c.id}
+              >
+                <.live_component
+                  module={Components.SelectorButton}
+                  id={"selector_button-#{c.id}"}
+                  enabled={equipable}
                 >
                   <%= "#{c.short_name} ($#{c.cost})" %>
-                </div>
-              <% end %>
+                </.live_component>
+              </div>
             <% end %>
           </div>
         </div>
