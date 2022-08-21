@@ -26,26 +26,26 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
         <h2 class="text-1xl m-1">Weapons</h2>
         <%= for w_pos <- 1..2 do %>
           <div class="ml-2">
-            <div
-              phx-click={"start_select_weapon"}
+            <button
+              phx-click="start_select_weapon"
               phx-value-pos={w_pos}
-              class="card card-bordered card-compact shadow-xl"
+              class="btn btn-sm capitalize justify-start w-full"
             >
-              <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_weapon(@state, w_pos)} /></div>
-            </div>
+              <.equipment_present eq={EquipmentSlots.get_weapon(@state, w_pos)} />
+            </button>
             <div class="ml-2">
               <%= for am_pos <- 1..2 do %>
                 <%= if EquipmentSlots.get_weapon(@state, w_pos).ammo_slot_count < am_pos do %>
                   <!-- <div>(no-ammo)</div> -->
                 <% else %>
-                  <div
-                    phx-click={"start_select_ammo"}
+                  <button
+                    phx-click="start_select_ammo"
                     phx-value-weapon_pos={w_pos}
                     phx-value-ammo_pos={am_pos}
-                    class={"card card-bordered card-compact shadow-xl"}
+                    class="btn btn-sm capitalize justify-start w-full"
                   >
-                    <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} /></div>
-                  </div>
+                    <.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} />
+                  </button>
                 <% end %>
               <% end %>
             </div>
@@ -56,26 +56,26 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
       <section>
         <h2 class="text-1xl m-1">Tools</h2>
         <%= for tool_pos <- 1..4 do %>
-          <div
-            phx-click={"start_select_tool"}
+          <button
+            phx-click="start_select_tool"
             phx-value-pos={tool_pos}
-            class="card card-bordered card-compact shadow-xl ml-2"
+            class="btn btn-sm capitalize justify-start w-full"
           >
-            <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} /></div>
-          </div>
+            <.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} />
+          </button>
         <% end %>
       </section>
 
       <div>
         <h2 class="text-1xl m-1">Consumables</h2>
         <%= for consumable_pos <- 1..4 do %>
-          <div
-            phx-click={"start_select_consumable"}
+          <button
+            phx-click="start_select_consumable"
             phx-value-pos={consumable_pos}
-            class="card card-bordered card-compact shadow-xl ml-2"
+            class="btn btn-sm capitalize justify-start w-full"
           >
-            <div class="card-title ml-2"><.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} /></div>
-          </div>
+            <.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} />
+          </button>
         <% end %>
       </div>
 
