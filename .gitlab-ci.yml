@@ -27,6 +27,6 @@ mix:
 
 deploy:
   script:
-    - flyctl deploy
+    - /root/.fly/bin/flyctl deploy
   only:
     - main
