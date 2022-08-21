@@ -17,8 +17,7 @@ defmodule HuntCutdownWeb.Router do
   scope "/", HuntCutdownWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-    live "/equipment", EquipmentLive.Index, :index
+    live "/", EquipmentLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
