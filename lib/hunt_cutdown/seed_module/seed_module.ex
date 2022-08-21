@@ -29,10 +29,7 @@ defmodule HuntCutdown.SeedModule.Setup do
     for {struct, path_rel} <- data_pairs do
       module = struct.__struct__
 
-      rows =
-        Path.join(path_base, path_rel)
-        |> Explorer.DataFrame.from_csv!()
-        |> Explorer.DataFrame.to_rows()
+      rows = Path.join(path_base, path_rel) |> read_csv()
 
       null_object_rows = get_null_objects(module) |> Enum.map(&struct_to_row_like(&1))
 
@@ -75,5 +72,12 @@ defmodule HuntCutdown.SeedModule.Setup do
       Application.fetch_env!(:hunt_cutdown, HuntCutdown.SeedModule.Setup)
 
     seed_data_root
+  end
+
+  defp read_csv(csv_path) when csv_path |> is_bitstring() do
+    csv_path
+    |> File.stream!()
+    |> CSV.decode!(headers: true)
+    |> Enum.take_every(1)
   end
 end

@@ -51,7 +51,7 @@ defmodule HuntCutdown.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:explorer, "~> 0.2.0"},
+      {:csv, "~> 2.4"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
