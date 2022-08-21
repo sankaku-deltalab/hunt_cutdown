@@ -4,6 +4,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ToolSelector do
 
   alias Phoenix.LiveView.Socket
   alias HuntCutdown.Equipment
+  alias HuntCutdownWeb.EquipmentLive.Components
 
   defmodule ToolSet do
     defstruct category: Equipment.ToolCategory.null_object(),
@@ -58,22 +59,19 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ToolSelector do
           <div class="card-title"><%= tool_sets.category.full_name %></div>
           <div class="card-body">
             <%= for {equipable, t} <- tool_sets.tools do %>
-              <%= if not equipable do %>
-                <span
-                  class="badge badge-ghost"
-                >
-                  <s><%= "#{t.short_name} ($#{t.cost})" %></s>
-                </span>
-              <% else %>
-                <div
-                  phx-click={"put_tool"}
-                  phx-value-pos={@pos}
-                  phx-value-tool={t.id}
-                  class="badge"
+              <div
+                phx-click={if equipable do "put_tool" end}
+                phx-value-pos={@pos}
+                phx-value-tool={t.id}
+              >
+                <.live_component
+                  module={Components.SelectorButton}
+                  id={"selector_button-#{t.id}"}
+                  enabled={equipable}
                 >
                   <%= "#{t.short_name} ($#{t.cost})" %>
-                </div>
-              <% end %>
+                </.live_component>
+              </div>
             <% end %>
           </div>
         </div>
