@@ -52,7 +52,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
       >
         ✕
       </label>
-      <div class="columns-3">
+      <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
         <%= for weapon_sets <- WeaponSet.create_sets(slots, pos, weapons, categories) do %>
           <div
             class="card card-compact shadow-xl card-bordered"

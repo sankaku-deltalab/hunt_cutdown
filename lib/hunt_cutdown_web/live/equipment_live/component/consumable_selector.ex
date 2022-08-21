@@ -52,31 +52,32 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector do
       >
         ✕
       </label>
-      <%= for consumable_sets <- ConsumableSet.create_sets(slots, pos, consumables, categories) do %>
-        <div
-          class="card card-compact shadow-xl"
-        >
-          <div class="card-title"><%= consumable_sets.category.short_name %></div>
-          <div class="card-body">
-            <%= for {equipable, c} <- consumable_sets.consumables do %>
-              <div
-                phx-click={if equipable do "put_consumable" end}
-                phx-value-pos={@pos}
-                phx-value-consumable={c.id}
-              >
-                <.live_component
-                  module={Components.SelectorButton}
-                  id={"selector_button-#{c.id}"}
-                  enabled={equipable}
+      <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+        <%= for consumable_sets <- ConsumableSet.create_sets(slots, pos, consumables, categories) do %>
+          <div
+            class="card card-compact shadow-xl"
+          >
+            <div class="card-title ml-2"><%= consumable_sets.category.short_name %></div>
+            <div class="card-body">
+              <%= for {equipable, c} <- consumable_sets.consumables do %>
+                <div
+                  phx-click={if equipable do "put_consumable" end}
+                  phx-value-pos={@pos}
+                  phx-value-consumable={c.id}
                 >
-                  <%= "#{c.short_name} ($#{c.cost})" %>
-                </.live_component>
-              </div>
-            <% end %>
+                  <.live_component
+                    module={Components.SelectorButton}
+                    id={"selector_button-#{c.id}"}
+                    enabled={equipable}
+                  >
+                    <%= "#{c.short_name} ($#{c.cost})" %>
+                  </.live_component>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
-
-      <% end %>
+        <% end %>
+      </div>
     </div>
     """
   end

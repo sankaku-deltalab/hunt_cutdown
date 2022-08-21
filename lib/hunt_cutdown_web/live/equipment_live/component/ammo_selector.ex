@@ -54,32 +54,33 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
       >
         ✕
       </label>
-      <%= for ammo_set <- [AmmoSet.create_set(slots, weapon_pos, ammo_pos, ammos, categories)] do %>
-        <div
-          class="card card-compact shadow-xl"
-        >
-          <div class="card-title ml-2"><%= "Ammo: #{ammo_set.category.full_name}" %></div>
-          <div class="card-body">
-            <%= for {equipable, am} <- ammo_set.ammos do %>
-              <div
-                phx-click={if equipable do "put_ammo" end}
-                phx-value-weapon_pos={weapon_pos}
-                phx-value-ammo_pos={ammo_pos}
-                phx-value-ammo={am.id}
-              >
-                <.live_component
-                  module={Components.SelectorButton}
-                  id={"selector_button-#{am.id}"}
-                  enabled={equipable}
+      <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
+        <%= for ammo_set <- [AmmoSet.create_set(slots, weapon_pos, ammo_pos, ammos, categories)] do %>
+          <div
+            class="card card-compact shadow-xl"
+          >
+            <div class="card-title ml-2"><%= "Ammo: #{ammo_set.category.full_name}" %></div>
+            <div class="card-body">
+              <%= for {equipable, am} <- ammo_set.ammos do %>
+                <div
+                  phx-click={if equipable do "put_ammo" end}
+                  phx-value-weapon_pos={weapon_pos}
+                  phx-value-ammo_pos={ammo_pos}
+                  phx-value-ammo={am.id}
                 >
-                <%= "#{am.short_name} ($#{am.cost})" %>
-                </.live_component>
-              </div>
-            <% end %>
+                  <.live_component
+                    module={Components.SelectorButton}
+                    id={"selector_button-#{am.id}"}
+                    enabled={equipable}
+                  >
+                    <%= "#{am.short_name} ($#{am.cost})" %>
+                  </.live_component>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
-
-      <% end %>
+        <% end %>
+      </div>
     </div>
     """
   end
