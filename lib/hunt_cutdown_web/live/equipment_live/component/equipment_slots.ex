@@ -56,26 +56,30 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
       <section>
         <h2 class="text-1xl m-1">Tools</h2>
         <%= for tool_pos <- 1..4 do %>
-          <button
-            phx-click="start_select_tool"
-            phx-value-pos={tool_pos}
-            class="btn btn-sm capitalize justify-start w-full"
-          >
-            <.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} />
-          </button>
+          <div class="ml-2">
+            <button
+              phx-click="start_select_tool"
+              phx-value-pos={tool_pos}
+              class="btn btn-sm capitalize justify-start w-full"
+            >
+              <.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} />
+            </button>
+          </div>
         <% end %>
       </section>
 
       <div>
         <h2 class="text-1xl m-1">Consumables</h2>
         <%= for consumable_pos <- 1..4 do %>
-          <button
-            phx-click="start_select_consumable"
-            phx-value-pos={consumable_pos}
-            class="btn btn-sm capitalize justify-start w-full"
-          >
-            <.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} />
-          </button>
+          <div class="ml-2">
+            <button
+              phx-click="start_select_consumable"
+              phx-value-pos={consumable_pos}
+              class="btn btn-sm capitalize justify-start w-full"
+            >
+              <.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} />
+            </button>
+          </div>
         <% end %>
       </div>
 
