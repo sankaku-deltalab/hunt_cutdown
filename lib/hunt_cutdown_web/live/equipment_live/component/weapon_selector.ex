@@ -46,23 +46,21 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
       ) do
     ~H"""
     <div>
-      <label
-        phx-click={"abort_select"}
-        class="btn btn-sm btn-circle absolute right-2 top-2"
-      >
+      <label phx-click="abort_select" class="btn btn-sm btn-circle absolute right-2 top-2">
         ✕
       </label>
       <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
         <%= for weapon_sets <- WeaponSet.create_sets(slots, pos, weapons, categories) do %>
-          <div
-            class="card card-compact shadow-xl card-bordered"
-          >
-
+          <div class="card card-compact shadow-xl card-bordered">
             <div class="card-title ml-2"><%= weapon_sets.category.full_name %></div>
             <div class="card-body">
               <%= for {equipable, w} <- weapon_sets.weapons do %>
                 <div
-                  phx-click={if equipable do "put_weapon" end}
+                  phx-click={
+                    if equipable do
+                      "put_weapon"
+                    end
+                  }
                   phx-value-pos={@pos}
                   phx-value-weapon={w.id}
                 >
@@ -77,7 +75,6 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
               <% end %>
             </div>
           </div>
-
         <% end %>
       </div>
     </div>

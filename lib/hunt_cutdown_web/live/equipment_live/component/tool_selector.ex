@@ -46,22 +46,21 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ToolSelector do
       ) do
     ~H"""
     <div>
-      <label
-        phx-click={"abort_select"}
-        class="btn btn-sm btn-circle absolute right-2 top-2"
-      >
+      <label phx-click="abort_select" class="btn btn-sm btn-circle absolute right-2 top-2">
         ✕
       </label>
       <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
         <%= for tool_sets <- ToolSet.create_sets(slots, pos, tools, categories) do %>
-          <div
-            class="card card-compact shadow-xl"
-          >
+          <div class="card card-compact shadow-xl">
             <div class="card-title ml-2"><%= tool_sets.category.full_name %></div>
             <div class="card-body">
               <%= for {equipable, t} <- tool_sets.tools do %>
                 <div
-                  phx-click={if equipable do "put_tool" end}
+                  phx-click={
+                    if equipable do
+                      "put_tool"
+                    end
+                  }
                   phx-value-pos={@pos}
                   phx-value-tool={t.id}
                 >

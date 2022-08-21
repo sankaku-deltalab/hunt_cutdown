@@ -16,10 +16,9 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.SelectorButton do
         } = assigns
       ) do
     ~H"""
-    <button
-      class={"btn btn-xs capitalize justify-start #{if not enabled do "btn-ghost" end} w-full"}
-      disabled={not enabled}
-    >
+    <button class={"btn btn-xs capitalize justify-start #{if not enabled do
+          "btn-ghost"
+        end} w-full"} disabled={not enabled}>
       <%= if enabled do %>
         <%= render_slot(@inner_block) %>
       <% else %>

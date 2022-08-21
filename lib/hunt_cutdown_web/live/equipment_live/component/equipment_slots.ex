@@ -82,7 +82,6 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
           </div>
         <% end %>
       </div>
-
     </div>
     """
   end

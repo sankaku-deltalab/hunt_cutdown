@@ -46,22 +46,21 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector do
       ) do
     ~H"""
     <div>
-      <label
-        phx-click={"abort_select"}
-        class="btn btn-sm btn-circle absolute right-2 top-2"
-      >
+      <label phx-click="abort_select" class="btn btn-sm btn-circle absolute right-2 top-2">
         ✕
       </label>
       <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
         <%= for consumable_sets <- ConsumableSet.create_sets(slots, pos, consumables, categories) do %>
-          <div
-            class="card card-compact shadow-xl"
-          >
+          <div class="card card-compact shadow-xl">
             <div class="card-title ml-2"><%= consumable_sets.category.short_name %></div>
             <div class="card-body">
               <%= for {equipable, c} <- consumable_sets.consumables do %>
                 <div
-                  phx-click={if equipable do "put_consumable" end}
+                  phx-click={
+                    if equipable do
+                      "put_consumable"
+                    end
+                  }
                   phx-value-pos={@pos}
                   phx-value-consumable={c.id}
                 >
