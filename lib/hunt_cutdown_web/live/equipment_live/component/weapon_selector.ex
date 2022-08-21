@@ -4,7 +4,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
 
   alias Phoenix.LiveView.Socket
   alias HuntCutdown.Equipment
-  alias HuntCutdownWeb.EquipmentLive.{Index, Components}
+  alias HuntCutdownWeb.EquipmentLive.Components
 
   defmodule WeaponSet do
     defstruct category: Equipment.WeaponCategory.null_object(),
