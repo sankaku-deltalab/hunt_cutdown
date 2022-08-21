@@ -11,7 +11,10 @@ defmodule HuntCutdown.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      dialyzer: [ignore_warnings: ".dialyzer-ignore.exs"]
+      dialyzer: [
+        ignore_warnings: ".dialyzer-ignore.exs",
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ]
     ]
   end
 

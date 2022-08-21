@@ -64,3 +64,6 @@ npm-debug.log
 
 # Ignore excel backup file
 ~$*.xlsx
+
+# Ignore dialyzer cache
+/priv/plts/

@@ -1,4 +1,4 @@
-image: elixir:latest
+image: elixir:1.13.4
 
 services:
   - postgres:latest
@@ -19,6 +19,11 @@ before_script:
   - mix ecto.migrate
   - apt-get update -qq && apt-get install -y curl
   - curl -L https://fly.io/install.sh | sh
+
+cache:
+  - key: CI_DOCKER_IMAGE_NAME
+    paths:
+      - priv/plts
 
 stages:
   - test
