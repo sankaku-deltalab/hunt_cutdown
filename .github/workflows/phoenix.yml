@@ -5,16 +5,16 @@ on: [push]
 permissions:
   contents: read
 
-env:
-  POSTGRES_DB: hunt_cutdown_test1
-  POSTGRES_HOST: postgres
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: "postgres"
-  MIX_ENV: "test"
-  MIX_TEST_PARTITION: 1
-
 jobs:
   build:
+
+    env:
+      POSTGRES_DB: hunt_cutdown_test1
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres"
+      MIX_ENV: "test"
+      MIX_TEST_PARTITION: 1
 
     name: Build and test
     runs-on: ubuntu-latest
