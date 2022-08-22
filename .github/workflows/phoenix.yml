@@ -47,6 +47,8 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Setup
-      run: mix setup
+      - run: mix deps.get
+      - run: mix ecto.create
+      - run: mix ecto.migrate
     - name: Run tests
       run: mix test
