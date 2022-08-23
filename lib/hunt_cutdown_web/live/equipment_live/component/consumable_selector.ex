@@ -61,8 +61,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector do
                       "put_consumable"
                     end
                   }
-                  phx-value-pos={@pos}
-                  phx-value-consumable={c.id}
+                  phx-value-json_payload={Jason.encode!(%{"pos" => @pos, "consumable_id" => c.id})}
                 >
                   <.live_component
                     module={Components.SelectorButton}

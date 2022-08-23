@@ -63,9 +63,13 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
                       "put_ammo"
                     end
                   }
-                  phx-value-weapon_pos={weapon_pos}
-                  phx-value-ammo_pos={ammo_pos}
-                  phx-value-ammo={am.id}
+                  phx-value-json_payload={
+                    Jason.encode!(%{
+                      "weapon_pos" => weapon_pos,
+                      "ammo_pos" => ammo_pos,
+                      "ammo_id" => am.id
+                    })
+                  }
                 >
                   <.live_component
                     module={Components.SelectorButton}

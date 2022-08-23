@@ -61,8 +61,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
                       "put_weapon"
                     end
                   }
-                  phx-value-pos={@pos}
-                  phx-value-weapon={w.id}
+                  phx-value-json_payload={Jason.encode!(%{"pos" => @pos, "weapon_id" => w.id})}
                 >
                   <.live_component
                     module={Components.SelectorButton}

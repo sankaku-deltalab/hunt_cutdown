@@ -28,7 +28,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
           <div class="ml-2">
             <button
               phx-click="start_select_weapon"
-              phx-value-pos={w_pos}
+              phx-value-json_payload={Jason.encode!(%{"pos" => w_pos})}
               class="btn btn-sm capitalize justify-start w-full"
             >
               <.equipment_present eq={EquipmentSlots.get_weapon(@state, w_pos)} />
@@ -40,8 +40,9 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
                 <% else %>
                   <button
                     phx-click="start_select_ammo"
-                    phx-value-weapon_pos={w_pos}
-                    phx-value-ammo_pos={am_pos}
+                    phx-value-json_payload={
+                      Jason.encode!(%{"weapon_pos" => w_pos, "ammo_pos" => am_pos})
+                    }
                     class="btn btn-sm capitalize justify-start w-full"
                   >
                     <.equipment_present eq={EquipmentSlots.get_ammo(@state, w_pos, am_pos)} />
@@ -59,7 +60,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
           <div class="ml-2">
             <button
               phx-click="start_select_tool"
-              phx-value-pos={tool_pos}
+              phx-value-json_payload={Jason.encode!(%{"pos" => tool_pos})}
               class="btn btn-sm capitalize justify-start w-full"
             >
               <.equipment_present eq={EquipmentSlots.get_tool(@state, tool_pos)} />
@@ -74,7 +75,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSlots do
           <div class="ml-2">
             <button
               phx-click="start_select_consumable"
-              phx-value-pos={consumable_pos}
+              phx-value-json_payload={Jason.encode!(%{"pos" => consumable_pos})}
               class="btn btn-sm capitalize justify-start w-full"
             >
               <.equipment_present eq={EquipmentSlots.get_consumable(@state, consumable_pos)} />
