@@ -243,6 +243,17 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
     {:noreply, socket}
   end
 
+  @impl true
+  def handle_event(event, %{"json_payload" => json_payload}, %Socket{} = socket)
+      when json_payload |> is_bitstring() do
+    params =
+      json_payload
+      |> Jason.decode!()
+      |> Enum.reduce(%{}, fn {k, v}, para -> Map.put(para, k, v) end)
+
+    handle_event(event, params, socket)
+  end
+
   # @impl true
   # def handle_event(_event, _params, %Socket{} = socket) do
   #   {:noreply, socket}
