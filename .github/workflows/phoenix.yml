@@ -1,0 +1,84 @@
+name: Phoenix CI
+
+on: [push]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    env:
+      POSTGRES_DB: hunt_cutdown_test1
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres"
+      MIX_ENV: "test"
+      MIX_TEST_PARTITION: 1
+
+    services:
+      postgres:
+        image: postgres:latest
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_PASSWORD: "postgres"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Elixir
+        id: beam
+        uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
+        with:
+          elixir-version: "1.13" # Define the elixir version [required]
+          otp-version: "24.1" # Define the OTP version [required]
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Restore dependencies cache
+        uses: actions/cache@v3
+        with:
+          path: deps
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: ${{ runner.os }}-mix-
+      - name: Restore PLT cache
+        uses: actions/cache@v2
+        id: plt_cache
+        with:
+          key: |
+            ${{ runner.os }}-${{ steps.beam.outputs.elixir-version }}-${{ steps.beam.outputs.otp-version }}-plt
+          restore-keys: |
+            ${{ runner.os }}-${{ steps.beam.outputs.elixir-version }}-${{ steps.beam.outputs.otp-version }}-plt
+          path: |
+            priv/plts
+      - name: Create PLTs
+        if: steps.plt_cache.outputs.cache-hit != 'true'
+        run: mix dialyzer --plt
+      - name: Setup
+        run: |
+          mix deps.get
+          mix ecto.create
+          mix ecto.migrate
+      - name: Run tests
+        run: mix test
+      - name: Run dialyzer
+        run: mix dialyzer --format github
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_name == 'main' }}
+
+    env:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
