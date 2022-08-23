@@ -33,6 +33,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up Elixir
+      id: beam
       uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
       with:
         elixir-version: '1.13' # Define the elixir version [required]
@@ -46,6 +47,19 @@ jobs:
         path: deps
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
+    - name: Restore PLT cache
+      uses: actions/cache@v2
+      id: plt_cache
+      with:
+        key: |
+          ${{ runner.os }}-${{ steps.beam.outputs.elixir-version }}-${{ steps.beam.outputs.otp-version }}-plt
+        restore-keys: |
+          ${{ runner.os }}-${{ steps.beam.outputs.elixir-version }}-${{ steps.beam.outputs.otp-version }}-plt
+        path: |
+          priv/plts
+    - name: Create PLTs
+      if: steps.plt_cache.outputs.cache-hit != 'true'
+      run: mix dialyzer --plt
     - name: Setup
       run: |
         mix deps.get
@@ -53,3 +67,5 @@ jobs:
         mix ecto.migrate
     - name: Run tests
       run: mix test
+    - name: Run dialyzer
+      run: mix dialyzer --format github
