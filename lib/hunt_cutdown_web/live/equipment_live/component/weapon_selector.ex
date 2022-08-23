@@ -55,22 +55,15 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.WeaponSelector do
             <div class="card-title ml-2"><%= weapon_sets.category.full_name %></div>
             <div class="card-body">
               <%= for {equipable, w} <- weapon_sets.weapons do %>
-                <div
-                  phx-click={
-                    if equipable do
-                      "put_weapon"
-                    end
-                  }
-                  phx-value-json_payload={Jason.encode!(%{"pos" => @pos, "weapon_id" => w.id})}
+                <.live_component
+                  module={Components.SelectorButton}
+                  id={"selector_button-#{w.id}"}
+                  event="put_weapon"
+                  json_payload={Jason.encode!(%{"pos" => @pos, "weapon_id" => w.id})}
+                  enabled={equipable}
                 >
-                  <.live_component
-                    module={Components.SelectorButton}
-                    id={"selector_button-#{w.id}"}
-                    enabled={equipable}
-                  >
-                    <%= "#{w.short_name} ($#{w.cost})" %>
-                  </.live_component>
-                </div>
+                  <%= "#{w.short_name} ($#{w.cost})" %>
+                </.live_component>
               <% end %>
             </div>
           </div>

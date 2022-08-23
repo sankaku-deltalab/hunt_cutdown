@@ -57,28 +57,21 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
             <div class="card-title ml-2"><%= "Ammo: #{ammo_set.category.full_name}" %></div>
             <div class="card-body">
               <%= for {equipable, am} <- ammo_set.ammos do %>
-                <div
-                  phx-click={
-                    if equipable do
-                      "put_ammo"
-                    end
-                  }
-                  phx-value-json_payload={
+                <.live_component
+                  module={Components.SelectorButton}
+                  id={"selector_button-#{am.id}"}
+                  event="put_ammo"
+                  json_payload={
                     Jason.encode!(%{
                       "weapon_pos" => weapon_pos,
                       "ammo_pos" => ammo_pos,
                       "ammo_id" => am.id
                     })
                   }
+                  enabled={equipable}
                 >
-                  <.live_component
-                    module={Components.SelectorButton}
-                    id={"selector_button-#{am.id}"}
-                    enabled={equipable}
-                  >
-                    <%= "#{am.short_name} ($#{am.cost})" %>
-                  </.live_component>
-                </div>
+                  <%= "#{am.short_name} ($#{am.cost})" %>
+                </.live_component>
               <% end %>
             </div>
           </div>

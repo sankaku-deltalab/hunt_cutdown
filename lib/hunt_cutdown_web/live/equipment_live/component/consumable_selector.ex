@@ -55,22 +55,15 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector do
             <div class="card-title ml-2"><%= consumable_sets.category.short_name %></div>
             <div class="card-body">
               <%= for {equipable, c} <- consumable_sets.consumables do %>
-                <div
-                  phx-click={
-                    if equipable do
-                      "put_consumable"
-                    end
-                  }
-                  phx-value-json_payload={Jason.encode!(%{"pos" => @pos, "consumable_id" => c.id})}
+                <.live_component
+                  module={Components.SelectorButton}
+                  id={"selector_button-#{c.id}"}
+                  event="put_consumable"
+                  json_payload={Jason.encode!(%{"pos" => @pos, "consumable_id" => c.id})}
+                  enabled={equipable}
                 >
-                  <.live_component
-                    module={Components.SelectorButton}
-                    id={"selector_button-#{c.id}"}
-                    enabled={equipable}
-                  >
-                    <%= "#{c.short_name} ($#{c.cost})" %>
-                  </.live_component>
-                </div>
+                  <%= "#{c.short_name} ($#{c.cost})" %>
+                </.live_component>
               <% end %>
             </div>
           </div>
