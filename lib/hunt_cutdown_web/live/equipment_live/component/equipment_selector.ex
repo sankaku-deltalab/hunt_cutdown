@@ -1,6 +1,6 @@
 defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
   use HuntCutdownWeb, :live_component
-  # import Phoenix.LiveView
+  import Phoenix.LiveView
 
   alias Phoenix.LiveView.Socket
   alias HuntCutdownWeb.EquipmentLive.Components
@@ -16,6 +16,15 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
             search_text: String,
             payload: String
           }
+
+    def is_searched?(%__MODULE__{search_text: text}, search_text)
+        when search_text |> is_bitstring() do
+      if search_text == "" do
+        true
+      else
+        String.contains?(String.downcase(text), String.downcase(search_text))
+      end
+    end
   end
 
   defmodule SelectContentBlock do
@@ -26,7 +35,11 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
             contents: [SelectContent]
           }
 
-    def build_blocks(contents) do
+    def build_blocks(contents, search_text) when search_text |> is_bitstring() do
+      contents =
+        contents
+        |> Enum.filter(&SelectContent.is_searched?(&1, search_text))
+
       categories = contents |> Enum.map(& &1.category_name) |> Enum.uniq() |> Enum.sort()
 
       categories
@@ -40,7 +53,25 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
 
   @impl true
   def mount(%Socket{} = socket) do
+    socket =
+      socket
+      |> assign(:search_text, "")
+
     {:ok, socket}
+  end
+
+  @impl true
+  def handle_event(
+        "update_search",
+        %{"filtering" => %{"search_text" => search_text}},
+        %Socket{} = socket
+      )
+      when search_text |> is_bitstring() do
+    socket =
+      socket
+      |> assign(:search_text, search_text)
+
+    {:noreply, socket}
   end
 
   @impl true
@@ -48,7 +79,8 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
         %{
           close_event: close_event,
           select_event: select_event,
-          contents: contents
+          contents: contents,
+          search_text: search_text
         } = assigns
       ) do
     ~H"""
@@ -56,8 +88,17 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
       <label phx-click={close_event} class="btn btn-sm btn-circle absolute right-2 top-2">
         ✕
       </label>
+      <.form let={f} for={:filtering}>
+        <%= text_input(f, :search_text,
+          phx_change: "update_search",
+          phx_target: @myself,
+          class: "input input-bordered w-full",
+          placeholder: "Search"
+        ) %>
+        <%= error_tag(f, :search_text) %>
+      </.form>
       <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
-        <%= for block <- SelectContentBlock.build_blocks(contents) do %>
+        <%= for block <- SelectContentBlock.build_blocks(contents, search_text) do %>
           <div class="card card-compact shadow-xl">
             <div class="card-title ml-2"><%= block.category_name %></div>
             <div class="card-body">
