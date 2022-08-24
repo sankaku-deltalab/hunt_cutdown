@@ -6,15 +6,25 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
   alias HuntCutdownWeb.EquipmentLive.Components
 
   defmodule SelectContent do
-    defstruct enabled: true,
-              category_name: "cartegory name",
-              text: "item name",
-              payload: %{"some" => "thing"}
+    defstruct [:item_id, :enabled, :category_name, :text, :search_text, :payload]
+
+    @type t() :: %__MODULE__{
+            item_id: String,
+            enabled: boolean,
+            category_name: String,
+            text: String,
+            search_text: String,
+            payload: String
+          }
   end
 
   defmodule SelectContentBlock do
-    defstruct category_name: "category name",
-              contents: [%SelectContent{}]
+    defstruct [:category_name, :contents]
+
+    @type t() :: %__MODULE__{
+            category_name: String,
+            contents: [SelectContent]
+          }
 
     def build_blocks(contents) do
       categories = contents |> Enum.map(& &1.category_name) |> Enum.uniq() |> Enum.sort()
@@ -54,7 +64,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector do
               <%= for c <- block.contents do %>
                 <.live_component
                   module={Components.SelectorButton}
-                  id={"content-#{c.text}"}
+                  id={"content-#{c.item_id}"}
                   event={select_event}
                   json_payload={Jason.encode!(c.payload)}
                   enabled={c.enabled}
