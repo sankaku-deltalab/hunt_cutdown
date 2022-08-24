@@ -3,33 +3,9 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
   # import Phoenix.LiveView
 
   alias Phoenix.LiveView.Socket
-  alias HuntCutdown.Equipment
+  alias HuntCutdown.Equipment.{EquipmentSlots, WeaponAmmo}
   alias HuntCutdownWeb.EquipmentLive.Components
-
-  defmodule AmmoSet do
-    defstruct category: Equipment.WeaponCategory.null_object(),
-              ammos: [{true, Equipment.WeaponAmmo.null_object()}]
-
-    def create_set(%Equipment.EquipmentSlots{} = slots, weapon_pos, ammo_pos, ammos, categories) do
-      category_id = Equipment.EquipmentSlots.get_weapon(slots, weapon_pos).category_id
-
-      category =
-        Enum.find(categories, &(&1.id == category_id)) || Equipment.WeaponCategory.null_object()
-
-      ammos =
-        ammos
-        |> Enum.filter(&(&1.weapon_category_id == category_id))
-        |> Enum.sort_by(&{&1.full_name})
-        |> Enum.map(fn am ->
-          {Equipment.EquipmentSlots.can_put_ammo?(slots, weapon_pos, ammo_pos, am), am}
-        end)
-
-      %AmmoSet{
-        category: category,
-        ammos: ammos
-      }
-    end
-  end
+  alias HuntCutdownWeb.EquipmentLive.Components.EquipmentSelector.SelectContent
 
   @impl true
   def mount(%Socket{} = socket) do
@@ -39,7 +15,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
   @impl true
   def render(
         %{
-          slots: %Equipment.EquipmentSlots{} = slots,
+          slots: %EquipmentSlots{} = slots,
           weapon_pos: weapon_pos,
           ammo_pos: ammo_pos,
           ammos: ammos,
@@ -48,36 +24,42 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.AmmoSelector do
       ) do
     ~H"""
     <div>
-      <label phx-click="abort_select" class="btn btn-sm btn-circle absolute right-2 top-2">
-        ✕
-      </label>
-      <div class="sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4">
-        <%= for ammo_set <- [AmmoSet.create_set(slots, weapon_pos, ammo_pos, ammos, categories)] do %>
-          <div class="card card-compact shadow-xl">
-            <div class="card-title ml-2"><%= "Ammo: #{ammo_set.category.full_name}" %></div>
-            <div class="card-body">
-              <%= for {equipable, am} <- ammo_set.ammos do %>
-                <.live_component
-                  module={Components.SelectorButton}
-                  id={"selector_button-#{am.id}"}
-                  event="put_ammo"
-                  json_payload={
-                    Jason.encode!(%{
-                      "weapon_pos" => weapon_pos,
-                      "ammo_pos" => ammo_pos,
-                      "ammo_id" => am.id
-                    })
-                  }
-                  enabled={equipable}
-                >
-                  <%= "#{am.short_name} ($#{am.cost})" %>
-                </.live_component>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <.live_component
+        module={Components.EquipmentSelector}
+        id="selector"
+        close_event="abort_select"
+        select_event="put_ammo"
+        contents={create_select_contents(slots, weapon_pos, ammo_pos, ammos, categories)}
+      />
     </div>
     """
+  end
+
+  defp create_select_contents(%EquipmentSlots{} = slots, weapon_pos, ammo_pos, ammos, categories) do
+    category_name_map = categories |> Enum.map(&{&1.id, &1.full_name}) |> Map.new()
+    weapon_category_id = EquipmentSlots.get_weapon(slots, weapon_pos).category_id
+
+    ammos
+    |> Enum.filter(&(&1.weapon_category_id == weapon_category_id))
+    |> Enum.map(&create_select_content(slots, weapon_pos, ammo_pos, &1, category_name_map))
+  end
+
+  defp create_select_content(
+         %EquipmentSlots{} = slots,
+         weapon_pos,
+         ammo_pos,
+         %WeaponAmmo{} = ammo,
+         category_name_map
+       )
+       when weapon_pos in 1..2 and
+              ammo_pos in 1..2 do
+    %SelectContent{
+      item_id: ammo.id,
+      enabled: EquipmentSlots.can_put_ammo?(slots, weapon_pos, ammo_pos, ammo),
+      category_name: Map.get(category_name_map, ammo.weapon_category_id),
+      text: "#{ammo.short_name} ($#{ammo.cost})",
+      search_text: ammo.full_name,
+      payload: %{"weapon_pos" => weapon_pos, "ammo_pos" => ammo_pos, "ammo_id" => ammo.id}
+    }
   end
 end
