@@ -1,6 +1,4 @@
-<div class={"modal #{if not (@selecting.category == :not_selecting) do
-    "modal-open"
-  end}"}>
+<div class={"modal #{if @selecting.category != :not_selecting, do: "modal-open"}"}>
   <div class="modal-box max-w-full">
     <%= if @selecting.category == :weapon do %>
       <.live_component
