@@ -18,15 +18,17 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   def mount(_params, _session, %Socket{} = socket) do
     socket =
       socket
-      |> assign(:slots, %Equipment.EquipmentSlots{})
-      |> assign(:selecting, @not_selecting)
-      |> assign(:weapons, Equipment.list_weapons())
-      |> assign(:weapon_categories, Equipment.list_weapon_categories())
-      |> assign(:ammos, Equipment.list_weapon_ammos())
-      |> assign(:tools, Equipment.list_tools())
-      |> assign(:tool_categories, Equipment.list_tool_categories())
-      |> assign(:consumables, Equipment.list_consumables())
-      |> assign(:consumable_categories, Equipment.list_consumable_categories())
+      |> assign(
+        slots: %Equipment.EquipmentSlots{},
+        selecting: @not_selecting,
+        weapons: Equipment.list_weapons(),
+        weapon_categories: Equipment.list_weapon_categories(),
+        ammos: Equipment.list_weapon_ammos(),
+        tools: Equipment.list_tools(),
+        tool_categories: Equipment.list_tool_categories(),
+        consumables: Equipment.list_consumables(),
+        consumable_categories: Equipment.list_consumable_categories()
+      )
 
     {:ok, socket}
   end

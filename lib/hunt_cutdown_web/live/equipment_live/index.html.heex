@@ -1,49 +1,18 @@
 <div class={"modal #{if @selecting.category != :not_selecting, do: "modal-open"}"}>
   <div class="modal-box max-w-full">
-    <%= if @selecting.category == :weapon do %>
-      <.live_component
-        module={HuntCutdownWeb.EquipmentLive.Components.WeaponSelector}
-        id="weapon_selector"
-        slots={@slots}
-        pos={@selecting.pos}
-        weapons={@weapons}
-        categories={@weapon_categories}
-      />
-    <% end %>
-
-    <%= if @selecting.category == :ammo do %>
-      <.live_component
-        module={HuntCutdownWeb.EquipmentLive.Components.AmmoSelector}
-        id="ammo_selector"
-        slots={@slots}
-        weapon_pos={@selecting.weapon_pos}
-        ammo_pos={@selecting.ammo_pos}
-        ammos={@ammos}
-        categories={@weapon_categories}
-      />
-    <% end %>
-
-    <%= if @selecting.category == :tool do %>
-      <.live_component
-        module={HuntCutdownWeb.EquipmentLive.Components.ToolSelector}
-        id="tool_selector"
-        slots={@slots}
-        pos={@selecting.pos}
-        tools={@tools}
-        categories={@tool_categories}
-      />
-    <% end %>
-
-    <%= if @selecting.category == :consumable do %>
-      <.live_component
-        module={HuntCutdownWeb.EquipmentLive.Components.ConsumableSelector}
-        id="tool_selector"
-        slots={@slots}
-        pos={@selecting.pos}
-        consumables={@consumables}
-        categories={@consumable_categories}
-      />
-    <% end %>
+    <.live_component
+      module={HuntCutdownWeb.EquipmentLive.Components.AllEquipmentSelector}
+      id="all_equipment_selector"
+      slots={@slots}
+      selecting={@selecting}
+      weapons={@weapons}
+      weapon_categories={@weapon_categories}
+      ammos={@ammos}
+      tools={@tools}
+      tool_categories={@tool_categories}
+      consumables={@consumables}
+      consumable_categories={@consumable_categories}
+    />
   </div>
 </div>
 
