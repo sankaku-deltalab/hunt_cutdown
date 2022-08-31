@@ -37,9 +37,7 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.DrawerFrame do
             ""
           end
       }>
-        <div class={
-          "relative h-screen opacity-100 menu p-4 overflow-y-auto w-#{drawer_width} bg-base-100 text-base-content"
-        }>
+        <div class={"relative h-screen opacity-100  w-#{drawer_width} bg-base-100"}>
           <%= render_slot(@inner_block) %>
         </div>
       </div>
