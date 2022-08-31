@@ -1,3 +1,19 @@
+<button phx-click="open_drawer">Open drawer</button>
+
+<.live_component
+  module={HuntCutdownWeb.EquipmentLive.Components.DrawerFrame}
+  id="drawer_frame"
+  open_drawer={@open_drawer}
+  drawer_width={drawer_width()}
+>
+  <ul>
+    <!-- Sidebar content here -->
+    <li><a>Sidebar Item 1</a></li>
+    <li><a>Sidebar Item 2</a></li>
+    <li><a>Sidebar Item 3</a></li>
+  </ul>
+</.live_component>
+
 <div class={"modal #{if @selecting.category != :not_selecting, do: "modal-open"}"}>
   <div class="modal-box max-w-full">
     <.live_component

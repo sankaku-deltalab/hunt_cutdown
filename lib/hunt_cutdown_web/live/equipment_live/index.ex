@@ -27,7 +27,8 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
         tools: Equipment.list_tools(),
         tool_categories: Equipment.list_tool_categories(),
         consumables: Equipment.list_consumables(),
-        consumable_categories: Equipment.list_consumable_categories()
+        consumable_categories: Equipment.list_consumable_categories(),
+        open_drawer: false
       )
 
     {:ok, socket}
@@ -150,6 +151,24 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
   end
 
   @impl true
+  def handle_event("open_drawer", _params, %Socket{} = socket) do
+    socket =
+      socket
+      |> assign(open_drawer: true)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("close_drawer", _params, %Socket{} = socket) do
+    socket =
+      socket
+      |> assign(open_drawer: false)
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_event(event, %{"json_payload" => json_payload}, %Socket{} = socket)
       when json_payload |> is_bitstring() do
     params =
@@ -158,6 +177,11 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
       |> Enum.reduce(%{}, fn {k, v}, para -> Map.put(para, k, v) end)
 
     handle_event(event, params, socket)
+  end
+
+  def drawer_width() do
+    # witdh in tailwind css
+    "60"
   end
 
   # @impl true
