@@ -30,11 +30,11 @@ defmodule HuntCutdownWeb.EquipmentLive.Components.DrawerFrame do
         }
       />
       <div class={
-        "absolute top-0 left-0 w-#{drawer_width} ease-out duration-100 " <>
+        "absolute top-0 left-0 ease-out duration-100 " <>
           if not @open_drawer do
-            "-translate-x-#{drawer_width}"
+            "w-0"
           else
-            ""
+            "w-#{drawer_width}"
           end
       }>
         <div class={"relative h-screen opacity-100  w-#{drawer_width} bg-base-100"}>
