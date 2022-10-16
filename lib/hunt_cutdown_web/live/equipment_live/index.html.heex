@@ -8,9 +8,15 @@
 >
   <ul class="menu overflow-y-auto bg-base-100 text-base-content">
     <!-- Sidebar content here -->
-    <li><a>Sidebar Item 1</a></li>
-    <li><a>Sidebar Item 2</a></li>
+    <li><a phx-click="open_description">Description</a></li>
   </ul>
+</.live_component>
+
+<.live_component
+  module={HuntCutdownWeb.EquipmentLive.Components.DescriptionModal}
+  id="description_modal"
+  open_description={@open_description}
+>
 </.live_component>
 
 <div class={"modal #{if @selecting.category != :not_selecting, do: "modal-open"}"}>

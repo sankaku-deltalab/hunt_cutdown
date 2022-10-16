@@ -28,7 +28,8 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
         tool_categories: Equipment.list_tool_categories(),
         consumables: Equipment.list_consumables(),
         consumable_categories: Equipment.list_consumable_categories(),
-        open_drawer: false
+        open_drawer: false,
+        open_description: false
       )
 
     {:ok, socket}
@@ -155,6 +156,24 @@ defmodule HuntCutdownWeb.EquipmentLive.Index do
     socket =
       socket
       |> assign(open_drawer: true)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("open_description", _params, %Socket{} = socket) do
+    socket =
+      socket
+      |> assign(open_description: true)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("close_description", _params, %Socket{} = socket) do
+    socket =
+      socket
+      |> assign(open_description: false)
 
     {:noreply, socket}
   end
